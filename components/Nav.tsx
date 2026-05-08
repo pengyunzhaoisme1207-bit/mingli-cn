@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/what-is-bazi", label: "What is Bazi" },
-  { href: "/cases", label: "Famous Cases" },
-  { href: "/sample-report", label: "Sample Report" },
+  { href: "/what-is-bazi", label: "什么是八字" },
+  { href: "/cases", label: "名人案例" },
+  { href: "/sample-report", label: "示例报告" },
 ];
 
 export default function Nav() {
@@ -16,7 +16,7 @@ export default function Nav() {
   const [myReportId, setMyReportId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Find the most recent report in localStorage
+    // 扫描 localStorage 查找最近的报告
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const key = localStorage.key(i);
       if (key && key.startsWith("report_")) {
@@ -34,7 +34,7 @@ export default function Nav() {
           MÍNG LÌ
         </Link>
 
-        {/* Desktop links */}
+        {/* 桌面端导航 */}
         <ul className={`nav-links ${open ? "open" : ""}`}>
           {links.map((l) => (
             <li key={l.href}>
@@ -54,7 +54,7 @@ export default function Nav() {
                 className={pathname?.startsWith("/report") ? "nav-active" : ""}
                 onClick={() => setOpen(false)}
               >
-                My Report
+                我的报告
               </Link>
             </li>
           )}
@@ -64,12 +64,12 @@ export default function Nav() {
               className="btn btn-gold nav-cta"
               onClick={() => setOpen(false)}
             >
-              Get my reading
+              开始解读
             </Link>
           </li>
         </ul>
 
-        {/* Mobile hamburger */}
+        {/* 移动端汉堡菜单 */}
         <button
           className="nav-toggle"
           onClick={() => setOpen(!open)}

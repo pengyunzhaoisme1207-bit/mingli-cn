@@ -13,10 +13,10 @@ export default function ReadingPage() {
   const [reportId, setReportId] = useState("");
   const [chapters, setChapters] = useState<Record<string, string>>({});
   const [pillars, setPillars] = useState([
-    { label: "Year Pillar", stems: "庚 午", hidden: "Hidden Stems: Ding, Ji", tenGod: "7K · DO" },
-    { label: "Month Pillar", stems: "壬 子", hidden: "Hidden Stems: Gui", tenGod: "EG · EG" },
-    { label: "Day Pillar", stems: "庚 寅", hidden: "Hidden Stems: Jia, Bing, Wu", tenGod: "IW · 7K" },
-    { label: "Hour Pillar", stems: "辛 巳", hidden: "Hidden Stems: Bing, Wu, Geng", tenGod: "DW · 7K" },
+    { label: "年柱", stems: "庚 午", hidden: "藏干：丁、己", tenGod: "七杀 · 正官" },
+    { label: "月柱", stems: "壬 子", hidden: "藏干：癸", tenGod: "伤官 · 伤官" },
+    { label: "日柱", stems: "庚 寅", hidden: "藏干：甲、丙、戊", tenGod: "偏财 · 七杀" },
+    { label: "时柱", stems: "辛 巳", hidden: "藏干：丙、戊、庚", tenGod: "比肩 · 七杀" },
   ]);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
@@ -41,7 +41,7 @@ export default function ReadingPage() {
     setError("");
     setChapters({});
 
-    // Unique ID: timestamp + random hex
+    // 唯一 ID：时间戳 + 随机字符串
     const id = `${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
     setReportId(id);
 
@@ -72,7 +72,6 @@ export default function ReadingPage() {
               return;
             }
             if (data.done) {
-              // Save parsed chapters from the full text we've accumulated
               const reportData = { info, pillars, chapters: latestChapters };
               localStorage.setItem(`report_${id}`, JSON.stringify(reportData));
               router.push(`/report/${id}`);
@@ -86,27 +85,27 @@ export default function ReadingPage() {
               setPhase("report");
             }
           } catch {
-            // Ignore malformed
+            // 忽略格式错误
           }
         }
       }
     } catch (err: any) {
-      setError(err.message || "Failed to generate report");
+      setError(err.message || "报告生成失败");
       setPhase("form");
     }
   }
 
   const chapterTitles: Record<string, string> = {
-    ch1: "八字排盘 / Bazi Chart Setup",
-    ch2: "日主强弱与格局 / Day Master & Pattern",
-    ch3: "形象、性情与健康 / Image, Temperament & Health",
-    ch4: "六亲与财官 / Family, Wealth & Career",
-    ch5: "大运流年 / Major Luck Cycles & Annual Years",
-    ch6: "补充推算 / Supplementary Calculations",
-    ch7: "四家投票 / Four Masters Voting",
-    ch8: "紫微斗数分析 / Zi Wei Dou Shu Analysis",
-    ch9: "双系统交叉验证 / Dual-System Cross Validation",
-    ch10: "综合建议 / Comprehensive Advice",
+    ch1: "八字排盘",
+    ch2: "日主强弱与格局",
+    ch3: "形象、性情与健康",
+    ch4: "六亲与财官",
+    ch5: "大运流年",
+    ch6: "补充推算",
+    ch7: "四家投票",
+    ch8: "紫微斗数分析",
+    ch9: "双系统交叉验证",
+    ch10: "综合建议",
   };
 
   function handleCopyLink() {
@@ -128,17 +127,17 @@ export default function ReadingPage() {
           <div className="container">
             <div className="reading-hero-inner">
               <div className="reading-hero-copy">
-                <p className="reading-hero-label">Your Reading</p>
-                <h1 className="reading-hero-title">Your reading starts here</h1>
+                <p className="reading-hero-label">你的解读</p>
+                <h1 className="reading-hero-title">你的解读从这里开始</h1>
                 <p className="reading-hero-sub">
-                  Enter your birth details as accurately as possible. Even a 15-minute difference in birth time can shift the entire chart — so ask your parents if you&apos;re unsure.
+                  请尽可能准确地填写出生信息。出生时间相差 15 分钟都可能改变整个命盘——如果不确定，可以问问父母。
                 </p>
                 <ul className="reading-hero-list">
-                  <li>10 chapters of deep analysis</li>
-                  <li>Four classical schools vote on your chart</li>
-                  <li>Zi Wei Dou Shu cross-validation</li>
-                  <li>Day Master, pattern, luck cycles &amp; more</li>
-                  <li>Delivered instantly in your browser</li>
+                  <li>十章节深度命理分析</li>
+                  <li>四大古典流派交叉投票</li>
+                  <li>紫微斗数交叉验证</li>
+                  <li>日主、格局、大运……一应俱全</li>
+                  <li>浏览器即时交付</li>
                 </ul>
                 {error && (
                   <div style={{
@@ -150,12 +149,12 @@ export default function ReadingPage() {
                     textAlign: "center",
                   }}>
                     <p style={{ color: "#F0A0A0", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.95rem" }}>
-                      Unable to generate report
+                      报告生成失败
                     </p>
                     <p style={{ color: "#C89090", fontSize: "0.85rem" }}>{error}</p>
                     <button className="btn btn-outline" style={{ marginTop: "1rem", fontSize: "0.85rem", padding: "0.5rem 1.5rem" }}
                       onClick={() => setError("")}>
-                      Try again
+                      重试
                     </button>
                   </div>
                 )}
@@ -164,49 +163,49 @@ export default function ReadingPage() {
               <div className="form-card">
                 <form ref={formRef} onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label className="form-label" htmlFor="fullName">Full name</label>
-                    <input className="form-input" type="text" id="fullName" name="fullName" placeholder="How should we address you?" required />
+                    <label className="form-label" htmlFor="fullName">姓名</label>
+                    <input className="form-input" type="text" id="fullName" name="fullName" placeholder="如何称呼你？" required />
                   </div>
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label className="form-label" htmlFor="birthDate">Date of birth</label>
+                      <label className="form-label" htmlFor="birthDate">出生日期</label>
                       <input className="form-input" type="date" id="birthDate" name="birthDate" required />
                     </div>
                     <div className="form-group">
-                      <label className="form-label" htmlFor="birthTime">Time of birth</label>
+                      <label className="form-label" htmlFor="birthTime">出生时间</label>
                       <input className="form-input" type="time" id="birthTime" name="birthTime" required />
                     </div>
                   </div>
-                  <p className="form-note">As accurate as possible — even 15 min matters</p>
+                  <p className="form-note">越准确越好——15 分钟的差距也会影响命盘</p>
 
                   <div className="form-group" style={{ marginTop: "1rem" }}>
-                    <label className="form-label" htmlFor="birthPlace">Place of birth</label>
-                    <input className="form-input" type="text" id="birthPlace" name="birthPlace" placeholder="City, Country" required />
+                    <label className="form-label" htmlFor="birthPlace">出生地点</label>
+                    <input className="form-input" type="text" id="birthPlace" name="birthPlace" placeholder="城市，国家/地区" required />
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Gender</label>
+                    <label className="form-label">性别</label>
                     <div className="radio-group">
                       <label className="radio-label">
                         <input type="radio" name="gender" value="male" required />
-                        Male
+                        男
                       </label>
                       <label className="radio-label">
                         <input type="radio" name="gender" value="female" />
-                        Female
+                        女
                       </label>
                     </div>
                   </div>
 
                   <div className="form-submit">
                     <button type="submit" className="btn btn-gold btn-full">
-                      Generate my reading &rarr;
+                      生成我的报告 &rarr;
                     </button>
                   </div>
                 </form>
 
-                <p className="form-disclaimer">Your report will be ready in about 30 seconds</p>
+                <p className="form-disclaimer">你的报告约 30 秒即可生成</p>
               </div>
             </div>
           </div>
@@ -217,13 +216,13 @@ export default function ReadingPage() {
         <section className="loading-screen active">
           <div className="container">
             <div className="loading-spinner" />
-            <h2 className="loading-title">Reading the classics&hellip;</h2>
-            <p className="loading-sub">Your chart is being analyzed across 30+ classical texts</p>
+            <h2 className="loading-title">查阅典籍中&hellip;</h2>
+            <p className="loading-sub">你的命盘正在 30+ 部古典文献中交叉分析</p>
             <div className="loading-steps">
-              <div className="loading-step"><span className="dot" /> Calculating Four Pillars</div>
-              <div className="loading-step"><span className="dot" /> Analyzing chart pattern</div>
-              <div className="loading-step"><span className="dot" /> Running Four Schools vote</div>
-              <div className="loading-step"><span className="dot" /> Cross-validating with Zi Wei Dou Shu</div>
+              <div className="loading-step"><span className="dot" /> 推算四柱</div>
+              <div className="loading-step"><span className="dot" /> 分析格局</div>
+              <div className="loading-step"><span className="dot" /> 运行四家投票</div>
+              <div className="loading-step"><span className="dot" /> 紫微斗数交叉验证</div>
             </div>
           </div>
         </section>
@@ -232,23 +231,23 @@ export default function ReadingPage() {
       {phase === "report" && (
         <section className="report-section active" style={{ paddingTop: "8rem" }}>
           <div className="container">
-            {/* Report Header with Action Buttons */}
+            {/* 报告头部 + 操作按钮 */}
             <div className="report-top-bar">
               <div>
-                <p className="pillars-header-label">Your Chart</p>
-                <h2 className="pillars-header-title">Your Four Pillars</h2>
+                <p className="pillars-header-label">你的命盘</p>
+                <h2 className="pillars-header-title">你的四柱</h2>
               </div>
               <div className="report-actions">
                 <button className="report-btn" onClick={handleCopyLink}>
-                  {copied ? "✓ Link copied!" : "🔗 Copy link"}
+                  {copied ? "✓ 链接已复制" : "🔗 复制链接"}
                 </button>
                 <button className="report-btn" onClick={handleDownloadPDF}>
-                  📄 Download PDF
+                  📄 下载 PDF
                 </button>
               </div>
             </div>
 
-            {/* Four Pillars */}
+            {/* 四柱 */}
             <div className="pillars-table">
               {pillars.map((p, i) => (
                 <div className="pillar" key={i}>
@@ -260,32 +259,25 @@ export default function ReadingPage() {
               ))}
             </div>
 
-            {/* Chapters */}
+            {/* 章节 */}
             <div className="report-chapters">
               {Object.entries(chapterTitles).map(([key, title]) => {
                 const content = chapters[key] || "";
                 const hasContent = content.length > 0;
-                // TODO: re-enable paywall when payment is ready
-                // const locked = key !== "ch1";
                 return (
                   <div key={key} className={`chapter ${false ? "chapter-locked" : ""}`} style={!hasContent ? { opacity: 0.3 } : {}}>
                     <div className="chapter-content">
-                      <p className="chapter-label">{title.split(" ")[0] === "Chapter" ? title : `Chapter ${key.replace("ch", "")}`}</p>
+                      <p className="chapter-label">{title}</p>
                       <h2 className="chapter-title">{title}</h2>
                       <div
                         className="chapter-body"
-                        dangerouslySetInnerHTML={{ __html: hasContent ? renderMarkdown(content) : "<p><em>Generating&hellip;</em></p>" }}
+                        dangerouslySetInnerHTML={{ __html: hasContent ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>" }}
                       />
                     </div>
-                    {/* TODO: re-enable paywall when payment is ready */}
-                    {/* {false && <div className="chapter-overlay" />} */}
                   </div>
                 );
               })}
             </div>
-
-            {/* TODO: re-enable paywall when payment is ready */}
-            {/* <UnlockCard /> */}
           </div>
         </section>
       )}

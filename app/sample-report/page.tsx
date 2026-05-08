@@ -7,36 +7,34 @@ import Footer from "@/components/Footer";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 
 const chapterTitles: Record<string, string> = {
-  ch1: "八字排盘 / Bazi Chart Setup",
-  ch2: "日主强弱与格局 / Day Master Strength & Pattern",
-  ch3: "形象、性情与健康 / Image, Temperament & Health",
-  ch4: "六亲与财官 / Family, Wealth & Career",
-  ch5: "大运流年 / Major Luck Cycles & Annual Years",
-  ch6: "补充推算 / Supplementary Calculations",
-  ch7: "四家投票 / Four Masters Voting",
-  ch8: "紫微斗数分析 / Zi Wei Dou Shu Analysis",
-  ch9: "双系统交叉验证 / Dual-System Cross Validation",
-  ch10: "综合建议 / Comprehensive Advice",
+  ch1: "八字排盘",
+  ch2: "日主强弱与格局",
+  ch3: "形象、性情与健康",
+  ch4: "六亲与财官",
+  ch5: "大运流年",
+  ch6: "补充推算",
+  ch7: "四家投票",
+  ch8: "紫微斗数分析",
+  ch9: "双系统交叉验证",
+  ch10: "综合建议",
 };
 
-// Real AI-generated report for Alex Chen
-// Generated: 2026-05-08 via qwen3.6-plus
+// 真实 AI 生成报告示例：Alex Chen
+// 生成时间：2026-05-08 via qwen3.6-plus
 const samplePillars = [
-  { label: "年柱 · Year", stems: "乙 丑", hidden: "己、癸、辛", tenGod: "劫财 / 正财" },
-  { label: "月柱 · Month", stems: "己 丑", hidden: "己、癸、辛", tenGod: "正财 / 正财" },
-  { label: "日柱 · Day", stems: "甲 寅", hidden: "甲、丙、戊", tenGod: "日主 / 比肩" },
-  { label: "时柱 · Hour", stems: "乙 亥", hidden: "壬、甲", tenGod: "劫财 / 偏印" },
+  { label: "年柱", stems: "乙 丑", hidden: "己、癸、辛", tenGod: "劫财 / 正财" },
+  { label: "月柱", stems: "己 丑", hidden: "己、癸、辛", tenGod: "正财 / 正财" },
+  { label: "日柱", stems: "甲 寅", hidden: "甲、丙、戊", tenGod: "日主 / 比肩" },
+  { label: "时柱", stems: "乙 亥", hidden: "壬、甲", tenGod: "劫财 / 偏印" },
 ];
 
-// AI-generated chapter content (bilingual Chinese + English)
+// AI 生成的章节内容（中英双语）
 const sampleChapters: Record<string, string> = {
-  ch1: `## Chapter 1: 八字排盘 / Bazi Chart Setup
+  ch1: `## Chapter 1: 八字排盘
 
 **第一步：编码（阳历→真太阳时→四柱干支+藏干→大运→起运年龄→流年）**
 
 公历1986年1月20日21:00，纽约（西经74°）。经度校正与均时差换算后，真太阳时约为20:53，落入戌时与亥时交界。依古法以整点21:00为界，取亥时。逆数至小寒（1月5日）共15日，三日为一岁，五岁起运。阴年男命逆排大运。
-
-Gregorian January 20, 1986, 21:00, New York (74°W). After longitude correction and equation of time adjustment, True Solar Time is approximately 20:53, falling at the boundary of Xu and Hai hours. Following classical convention using the exact hour mark, Hai hour is adopted. Counting backward to Minor Cold (January 5) yields 15 days; dividing by three gives a starting age of five. Born in a Yin year, the Major Luck Cycles are arranged in reverse order.
 
 | 柱位 | 天干 | 地支 | 藏干 | 纳音 | 空亡 |
 |---|---|---|---|---|---|
@@ -45,61 +43,37 @@ Gregorian January 20, 1986, 21:00, New York (74°W). After longitude correction 
 | 日柱 | 甲 | 寅 | 甲、丙、戊 | 大溪水 | 子、丑 |
 | 时柱 | 乙 | 亥 | 壬、甲 | 山头火 | 子、丑 |
 
-五行分布：木（4）、土（3）、水（2）、金（1）、火（0）。日主为甲木，生于丑月，地支寅亥合木，天干双乙透出，木气成势。
+五行分布：木（4）、土（3）、水（2）、金（1）、火（0）。日主为甲木，生于丑月，地支寅亥合木，天干双乙透出，木气成势。`,
 
-Five Elements Distribution: Wood (4), Earth (3), Water (2), Metal (1), Fire (0). The Day Master is Jia Wood, born in the Chou month. The earthly branches Yin and Hai combine into Wood, while double Yi Wood appears in the heavenly stems, forming a strong Wood momentum.`,
-
-  ch2: `## Chapter 2: 日主强弱与格局 / Day Master Strength & Pattern
+  ch2: `## Chapter 2: 日主强弱与格局
 
 甲木为阳木，如参天大树，性刚直而向上。喜庚金雕琢成器，喜丙火温暖驱寒，喜癸水润泽根基。忌土重埋根，忌水多漂木。
 
-Jia Wood is Yang Wood, resembling a towering tree, with a nature that is upright and upward-growing. It favors Geng Metal to carve it into a useful vessel, Bing Fire to warm and dispel cold, and Gui Water to nourish its roots. It fears heavy Earth burying its roots and excessive Water causing it to drift.
-
 月令丑土，为季冬湿土，本气己土当权，余气癸水暗藏。己土正财透于月干，得月令之根。然丑月寒气未退，木气休囚，需火暖局方能生发。
-
-The Month Command is Chou Earth, a damp Earth of late winter, with Ji Earth as the primary Qi holding authority and Gui Water hidden as residual Qi. Ji Earth Direct Wealth is revealed in the Month Stem, rooted in the Month Branch. However, the cold of the Chou month has not yet receded, leaving Wood in a resting state; Fire is required to warm the chart for growth.
 
 日主强弱评估：同方（水木）得寅木禄根、亥水长生、双乙劫财帮扶，异方（土金）仅得双丑土耗泄。综合加权，日主偏旺。
 
-Day Master Strength Assessment: The same faction (Water and Wood) gains the Lu root from Yin Wood, the Chang Sheng from Hai Water, and support from double Yi Rob Wealth. The opposing faction (Earth and Metal) only drains through double Chou Earth. After comprehensive weighting, the Day Master is slightly strong.
-
 《穷通宝鉴》云："甲木生于丑月，寒气未除，先丙后丁，庚金劈甲引丁。"局中无明火透干，调候为急。取格为正财格，己土透干得令，然坐空亡，财气虚浮。相神当取火以泄木生土，通关调候。
 
-As stated in Qiong Tong Bao Jian (穷通宝鉴): "Jia Wood born in the Chou month, with cold not yet dispelled, requires Bing Fire first, then Ding Fire, and Geng Metal to split Jia and draw out Ding." No bright Fire is revealed in the chart, making temperature regulation urgent. The pattern is Direct Wealth, with Ji Earth revealed and commanding the month, yet sitting in Kong Wang (Void), making wealth energy insubstantial.
+用神：丙火（食神）。喜神：丁火、戊土。忌神：壬癸水、甲乙木。仇神：辛金。闲神：己土。`,
 
-用神：丙火（食神）。喜神：丁火、戊土。忌神：壬癸水、甲乙木。仇神：辛金。闲神：己土。
-
-Favorable Element: Bing Fire (Eating God). Beneficial Elements: Ding Fire, Wu Earth. Unfavorable Elements: Ren/Gui Water, Jia/Yi Wood. Hostile Element: Xin Metal. Neutral Element: Ji Earth.`,
-
-  ch3: `## Chapter 3: 形象、性情与健康 / Image, Temperament & Health
+  ch3: `## Chapter 3: 形象、性情与健康
 
 命局清浊参半。水木相生而土受克，源流至亥水而止，缺乏火气通关，略显滞涩。财星透干却落空亡，属"假财"之象，主表面风光而内里需实修。
 
-The chart's clarity and turbidity are mixed. Water generates Wood while Earth is controlled; the flow stops at Hai Water, lacking Fire to bridge the gap, appearing slightly stagnant. Wealth is revealed but falls into Void, representing "illusory wealth," indicating outward prosperity that requires inner cultivation to sustain.
-
 十神性情：甲寅日柱自坐禄神，性格刚毅果决，独立自主，不喜依附。双乙劫财透干，重情重义，交友广阔，但易因朋友或合作破耗。正财格务实勤勉，然空亡致其对财富有患得患失之感，行事偏谨慎。
 
-Ten Gods Temperament: Jia Yin Day Pillar sits on its own Lu, indicating a resolute, decisive, and independent character that dislikes dependency. Double Yi Rob Wealth in the stems shows loyalty and broad social circles, but prone to financial loss through friends or partnerships.
+五行疾病提示：木旺土虚，脾胃消化系统易弱。冬木寒湿，肝胆气机易郁结，需防风湿、关节酸痛及慢性肠胃不适。《黄帝内经》言："木郁达之，土虚补之。"宜疏肝健脾，忌生冷寒凉。`,
 
-五行疾病提示：木旺土虚，脾胃消化系统易弱。冬木寒湿，肝胆气机易郁结，需防风湿、关节酸痛及慢性肠胃不适。《黄帝内经》言："木郁达之，土虚补之。"宜疏肝健脾，忌生冷寒凉。
-
-Five Elements Health Indicators: Strong Wood and weak Earth suggest vulnerability in the spleen and stomach digestive system. Winter Wood with damp-cold may cause stagnation in the liver and gallbladder, requiring vigilance against rheumatism, joint soreness, and chronic gastrointestinal discomfort. As stated in Huang Di Nei Jing (黄帝内经): "When Wood is stagnant, promote its flow; when Earth is deficient, tonify it."`,
-
-  ch4: `## Chapter 4: 六亲与财官 / Family, Wealth & Career
+  ch4: `## Chapter 4: 六亲与财官
 
 年柱乙丑为祖上父母宫，月柱己丑为兄弟父母宫。财星己土为父，落空亡且被比劫暗克，主父缘较薄或早年家庭助力有限，需白手起家。日支寅木为配偶宫，坐比肩，配偶个性独立强势，婚姻中易有主导权之争，宜以柔克刚。时柱乙亥为子女宫，水木相生，子女聪慧但需防溺爱。
 
-The Year Pillar Yi Chou represents ancestors and parents; the Month Pillar Ji Chou represents siblings and parents. Ji Earth Wealth represents the father, falling into Void and secretly controlled by Rob Wealth, indicating a thin paternal bond or limited early family support, requiring self-made success. The Day Branch Yin Wood is the Spouse Palace, sitting on Companion, indicating an independent and strong-willed partner, with potential power struggles in marriage.
+财官状态：正财己土透月干，为稳定收入之象，然空亡主财来财去，不宜高风险投机。官杀（金）藏于丑中不透，事业宜走专业技术、管理或体制内路线，忌频繁跳槽。《子平真诠》云："财格配印，富贵双全；财格逢劫，破耗难免。"此局劫财透而印藏，需以火通关，方能化劫生财。`,
 
-财官状态：正财己土透月干，为稳定收入之象，然空亡主财来财去，不宜高风险投机。官杀（金）藏于丑中不透，事业宜走专业技术、管理或体制内路线，忌频繁跳槽。《子平真诠》云："财格配印，富贵双全；财格逢劫，破耗难免。"此局劫财透而印藏，需以火通关，方能化劫生财。
-
-Wealth and Career Status: Direct Wealth Ji Earth is revealed in the Month Stem, indicating stable income, yet the Void suggests fluctuating finances, making high-risk speculation unsuitable. Officer/Killing (Metal) is hidden in Chou and not revealed, suggesting a career path in specialized skills, management, or institutional roles. As stated in Zi Ping Zhen Quan (子平真诠): "Wealth pattern with Resource brings wealth and honor; Wealth pattern encountering Rob Wealth brings inevitable loss."`,
-
-  ch5: `## Chapter 5: 大运流年 / Major Luck Cycles & Annual Years
+  ch5: `## Chapter 5: 大运流年
 
 起运计算：1986年1月20日逆数至小寒（1月5日）共15天，15÷3=5岁起运。1991年交第一步大运。
-
-Starting Age Calculation: Counting backward from January 20, 1986, to Minor Cold (January 5) yields 15 days; 15÷3=5 years old to start luck. The first Major Luck Cycle begins in 1991.
 
 | 大运 | 干支 | 起运年份 | 止运年份 | 核心意象 |
 |---|---|---|---|---|
@@ -114,36 +88,22 @@ Starting Age Calculation: Counting backward from January 20, 1986, to Minor Cold
 
 当前大运（2021-2030）：乙酉大运。乙木劫财透干，酉金正官坐支。官星制劫，主事业上有管理职权或制度约束，竞争加剧但能掌权。酉丑半合金局，暗生官星，利于职场晋升，但需防同辈争功。
 
-Current Major Luck Cycle (2021-2030): Yi You Cycle. Yi Wood Rob Wealth is revealed, with You Metal Direct Officer in the branch. The Officer controls Rob Wealth, indicating management authority or institutional constraints in career, with intensified competition but ability to hold power.
-
 未来三年流年：
 - 2025 乙巳年：劫财透，巳火食神暖局。事业有突破，但合作易生分歧。凶度：★★☆☆☆
 - 2026 丙午年：食神旺，午火调候得力。财运上升，贵人显现，宜把握投资与晋升。凶度：★☆☆☆☆
-- 2027 丁未年：伤官生财，未土冲丑。财库被冲，资金流动大，防破财与合同纠纷。凶度：★★★☆☆
+- 2027 丁未年：伤官生财，未土冲丑。财库被冲，资金流动大，防破财与合同纠纷。凶度：★★★☆☆`,
 
-Upcoming Three Annual Years:
-- 2025 Yi Si Year: Rob Wealth revealed, Si Fire Eating God warms the chart. Career breakthroughs occur, but partnerships may face disagreements. Danger Rating: ★★☆☆☆
-- 2026 Bing Wu Year: Eating God prospers, Wu Fire effectively regulates temperature. Wealth rises, noble people appear. Danger Rating: ★☆☆☆☆
-- 2027 Ding Wei Year: Hurting Officer generates Wealth, Wei Earth clashes with Chou. Guard against financial loss. Danger Rating: ★★★☆☆`,
-
-  ch6: `## Chapter 6: 补充推算 / Supplementary Calculations
+  ch6: `## Chapter 6: 补充推算
 
 神煞分布：天乙贵人（丑）落空亡，贵人助力需主动争取；文昌（巳）在流年2025引动，利考试与文书；驿马（亥）在时支，主中晚年多奔波或海外发展；华盖（丑）双现，具艺术、哲学或宗教天赋；桃花（午）未入原局，感情偏理性；羊刃（卯）不现，无极端冲动；空亡（子丑）在年月，祖业难承，早年自立。
-
-Auxiliary Stars Distribution: Tian Yi Noble (Chou) falls into Void, requiring proactive effort to gain support; Wen Chang (Si) activated in 2025, favorable for exams and documents; Yi Ma (Hay) in Hour Branch, indicating mid-to-late life travel or overseas development; Hua Gai (Chou) appears twice, showing talent in arts, philosophy, or spirituality; Tao Hua (Wu) absent from the natal chart, indicating rational relationships; Kong Wang (Zi/Chou) in Year/Month, making ancestral inheritance difficult and requiring early independence.
 
 命宫（紫微斗数）：寅宫，天同独坐，陀罗同宫。主性格温和但内心纠结，福泽需经磨砺方显。
 小限（2024）：行经酉宫，逢紫微七杀化科，事业关键期，宜稳扎稳打。
 空亡：日柱甲寅旬，子丑空。年月双空，主早年离乡或家族助力薄弱。
 
-Life Palace (Zi Wei Dou Shu): Yin Palace, Tian Tong alone, with Tuo Luo. Indicates a gentle nature but inner conflict; blessings manifest after trials.
-Minor Limit (2024): Passes through You Palace, encountering Zi Wei and Qi Sha with Hua Ke, a critical career period requiring steady progress.
+病药说：病在冬木寒湿、比劫夺财、财星空亡。药在丙丁火调候泄秀，戊土固本培元。《滴天髓》云："有病方为贵，无伤不是奇。格中如去病，财禄两相随。"此局以火为药，逢火运则病去福来。`,
 
-病药说：病在冬木寒湿、比劫夺财、财星空亡。药在丙丁火调候泄秀，戊土固本培元。《滴天髓》云："有病方为贵，无伤不是奇。格中如去病，财禄两相随。"此局以火为药，逢火运则病去福来。
-
-Bing Yao Theory: The illness lies in winter Wood's cold-dampness, Rob Wealth snatching Wealth, and Wealth falling into Void. The medicine is Bing/Ding Fire to regulate temperature and drain excess, and Wu Earth to strengthen the foundation. As stated in Di Tian Sui (滴天髓): "Illness makes a chart noble; without injury, it is not extraordinary. If the illness is removed in the pattern, wealth and honor follow."`,
-
-  ch7: `## Chapter 7: 四家投票 / Four Masters Voting
+  ch7: `## Chapter 7: 四家投票
 
 | 家 | 格局 | 日主强弱 | 用神/喜神 | 当前大运 | 财运 |
 |---|---|---|---|---|---|
@@ -153,29 +113,19 @@ Bing Yao Theory: The illness lies in winter Wood's cold-dampness, Rob Wealth sna
 | 韦千里 | 八步法：月令取格，透干为用 | 偏旺（比劫帮身，印藏） | 食伤生财，火为枢纽 | 乙酉运，金木交战，宜守不宜攻 | 财星落空，需待火土流年填实 |
 | 共识 | 正财格，冬木寒湿，需火调候通关 | 偏旺 | 丙火/丁火/戊土 | 乙酉运，压力与机遇并存，宜稳中求进 | 正财稳健，忌高风险，2026-2027为财库填实期 |`,
 
-  ch8: `## Chapter 8: 紫微斗数分析 / Zi Wei Dou Shu Analysis
+  ch8: `## Chapter 8: 紫微斗数分析
 
 命宫位置与主星：命宫在寅，天同独坐，陀罗同宫。天同为福星，主温和、重情、享福，但陀罗同宫主内心多虑、行事拖延，需经磨砺方能成器。
 
-Life Palace Location & Major Stars: Life Palace in Yin, Tian Tong alone, with Tuo Luo. Tian Tong is a Fortune Star, indicating gentleness, emotional depth, and enjoyment, but Tuo Luo brings inner worry and procrastination; success requires tempering through trials.
-
 身宫位置与分析：身宫在子，天府独坐。天府为财库之星，主稳重、理财能力强、重物质基础。身宫落天府，中晚年注重资产积累与生活品质，行事趋于保守务实。
-
-Body Palace Location & Analysis: Body Palace in Zi, Tian Fu alone. Tian Fu is a Wealth Vault Star, indicating stability, strong financial management, and focus on material foundations.
 
 三方四正：命宫（寅）天同，财帛宫（戌）贪狼+文昌+右弼，官禄宫（午）紫微+七杀+化科，迁移宫（申）天相+文曲+天钺+火星。
 
-Three Parties & Four Courts: Life Palace (Yin) Tian Tong, Wealth Palace (Xu) Tan Lang + Wen Chang + You Bi, Career Palace (Wu) Zi Wei + Qi Sha + Hua Ke, Travel Palace (Shen) Tian Xiang + Wen Qu + Tian Yue + Huo Xing.
-
 十二宫位分布与四化：乙干四化，天机化禄（兄弟宫），天梁化权（疾厄宫），紫微化科（官禄宫），太阴化忌（田宅宫）。
 
-Twelve Palaces Distribution & Four Transformations: Yi Stem Transformations: Tian Ji Hua Lu (Siblings), Tian Liang Hua Quan (Health), Zi Wei Hua Ke (Career), Tai Yin Hua Ji (Property).
+大运方向：现行乙酉大运（2021-2030），紫微斗数大限走午宫，逢紫微七杀化科。主事业突破期，权责加重，宜把握专业深耕与团队管理。`,
 
-大运方向：现行乙酉大运（2021-2030），紫微斗数大限走午宫，逢紫微七杀化科。主事业突破期，权责加重，宜把握专业深耕与团队管理。
-
-Major Luck Direction: Currently in Yi You Major Cycle (2021-2030), Zi Wei Dou Shu Decade passes through Wu Palace, encountering Zi Wei and Qi Sha with Hua Ke. Indicates a career breakthrough period.`,
-
-  ch9: `## Chapter 9: 双系统交叉验证 / Dual-System Cross Validation
+  ch9: `## Chapter 9: 双系统交叉验证
 
 | 维度 | 八字结论 | 紫微结论 | 综合判断 |
 |---|---|---|---|
@@ -188,30 +138,22 @@ Major Luck Direction: Currently in Yi You Major Cycle (2021-2030), Zi Wei Dou Sh
 | 黄金期 | 丙戌、丁亥、癸未运，火土暖局，事业财运双收 | 午、未、巳大限，紫微天府发力，名利双全 | 2026-2035年为人生黄金期，宜把握事业与资产积累 |
 | 最差期 | 壬午、辛巳运前段，水旺木漂，财官受制 | 亥、子大限，太阴化忌加重，田宅与情绪波动 | 2041年前需防财务与情绪低谷，宜守成，忌激进投资 |`,
 
-  ch10: `## Chapter 10: 综合建议 / Comprehensive Advice
+  ch10: `## Chapter 10: 综合建议
 
 破局方向：命局核心病在"寒湿无火、财星空亡"。破局关键在于"引火通关"。职业上宜选择能源、文化、教育、互联网或餐饮等火属性行业；地域上宜向南方或阳光充足之地发展；人际上宜结交火土旺相之友，以补局中不足。
 
-Breakthrough Direction: The core illness of the chart is "cold-dampness without Fire, and Wealth in Void." The key to breakthrough is "introducing Fire to bridge the gap." Professionally, favor Fire-attribute industries like energy, culture, education, internet, or catering; geographically, develop toward the south or sunny regions; socially, befriend those with strong Fire/Earth elements.
-
 黄金窗口：2026丙午年与2027丁未年，火土齐来，调候得力，财库填实。此两年为事业晋升、资产布局、婚恋定局的最佳窗口。宜果断行动，把握政策与市场红利。
-
-Golden Window: 2026 Bing Wu Year and 2027 Ding Wei Year bring Fire and Earth together, effectively regulating temperature and filling the Wealth Vault. These two years are the optimal windows for career promotion, asset allocation, and marriage settlement.
 
 注意事项：乙酉大运（2021-2030）劫财见官，竞争与压力并存。切忌盲目担保、合伙投机或情绪化决策。财务上宜分散配置，保留现金流；健康上防肝胆郁结与脾胃虚寒，规律作息，适度运动。
 
-Precautions: The Yi You Major Cycle (2021-2030) shows Rob Wealth meeting Officer, bringing competition and pressure. Avoid blind guarantees, speculative partnerships, or emotional decisions. Financially, diversify assets and maintain cash flow; health-wise, guard against liver/gallbladder stagnation and spleen/stomach cold.
-
-格局总评：甲寅日柱，自坐禄神，根基深厚。虽生冬月寒湿，然寅亥合木，生机不绝。命带正财，务实勤勉，唯需火气暖局方能大成。《渊海子平》云："木逢春生，根深叶茂；木逢冬生，待火而荣。"此局待时而动，中年后火土运至，必能厚积薄发，成就稳健富足之人生。
-
-Overall Pattern Assessment: Jia Yin Day Pillar sits on its own Lu, with deep roots. Though born in a cold-damp winter month, Yin and Hai combine into Wood, sustaining vitality. The chart carries Direct Wealth, indicating pragmatism and diligence, but requires Fire to warm the chart for full realization. As stated in Yuan Hai Zi Ping (渊海子平): "Wood born in spring grows deep roots and lush leaves; Wood born in winter awaits Fire to flourish."`,
+格局总评：甲寅日柱，自坐禄神，根基深厚。虽生冬月寒湿，然寅亥合木，生机不绝。命带正财，务实勤勉，唯需火气暖局方能大成。《渊海子平》云："木逢春生，根深叶茂；木逢冬生，待火而荣。"此局待时而动，中年后火土运至，必能厚积薄发，成就稳健富足之人生。`,
 };
 
 export default function SampleReportPage() {
   const [activeChapter, setActiveChapter] = useState("ch1");
 
   useEffect(() => {
-    document.title = "Sample Bazi Reading — Alex Chen — MÍNG LÌ";
+    document.title = "示例报告 — Alex Chen — MÍNG LÌ";
   }, []);
 
   useEffect(() => {
@@ -238,18 +180,18 @@ export default function SampleReportPage() {
       <section className="sample-hero">
         <div className="container">
           <div className="sample-hero-inner">
-            <p className="section-label">Sample Reading — This is what your report looks like</p>
+            <p className="section-label">示例报告 — 这就是你的报告样子</p>
             <h1 className="section-title" style={{ maxWidth: 640, margin: "0 auto 0.8rem" }}>
               Alex Chen
             </h1>
             <p className="section-desc" style={{ marginBottom: 0 }}>
-              January 20, 1986 · 9:00 PM · New York, USA
+              1986年1月20日 · 21:00 · 美国纽约
             </p>
             <p className="section-desc" style={{ marginTop: "0.5rem", fontSize: "0.82rem", color: "var(--text-dim)" }}>
-              Day Master: 甲木 (Jia Wood) · 身旺 (Strong) · 正财格 (Direct Wealth Pattern)
+              日主：甲木 · 身旺 · 正财格
             </p>
             <p className="section-desc" style={{ marginTop: "1rem", fontSize: "0.88rem" }}>
-              All ten chapters are fully visible — this is a real AI-generated report, not a template.
+              十章节完整可见——这是真实 AI 生成的报告，不是模板。
             </p>
 
             <div className="pillars-row">
@@ -268,7 +210,7 @@ export default function SampleReportPage() {
       {/* ─── REPORT ─── */}
       <div className="container">
         <div className="report-layout">
-          {/* Sidebar Nav */}
+          {/* 侧边导航 */}
           <nav className="report-sidebar">
             <ol className="chapter-nav-list">
               {Object.entries(chapterTitles).map(([key, title]) => (
@@ -278,14 +220,14 @@ export default function SampleReportPage() {
                     className={`chapter-nav-link ${activeChapter === key ? "active" : ""}`}
                   >
                     <span className="chapter-nav-num">{key.replace("ch", "")}</span>
-                    {title.split(" / ")[0]}
+                    {title}
                   </Link>
                 </li>
               ))}
             </ol>
           </nav>
 
-          {/* Report Content */}
+          {/* 报告内容 */}
           <div className="report-content">
             {Object.entries(chapterTitles).map(([key, title]) => (
               <div key={key} id={key} className="report-chapter">
@@ -302,18 +244,18 @@ export default function SampleReportPage() {
         </div>
       </div>
 
-      {/* ─── FINAL CTA ─── */}
+      {/* ─── 最终 CTA ─── */}
       <section className="final-cta">
         <div className="container">
-          <p className="section-label">Your Turn</p>
-          <h2 className="section-title">Your report will be this thorough — and entirely about you</h2>
+          <p className="section-label">开始你的解读</p>
+          <h2 className="section-title">你的报告也会如此详尽——而且完全关于你</h2>
           <p className="section-desc" style={{ margin: "0 auto 2rem" }}>
-            Alex&apos;s chart took 30 seconds to generate. Yours is next.
+            Alex 的报告只用了 30 秒。你的也在等待。
           </p>
           <Link href="/reading" className="btn btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.05rem", marginBottom: "1rem" }}>
-            Get my reading &rarr;
+            开始我的解读 &rarr;
           </Link>
-          <p className="final-price">$9.99 &middot; One-time &middot; Instant delivery &middot; PDF included</p>
+          <p className="final-price">¥29.9 &middot; 一次性付费 &middot; 即时生成 &middot; 含 PDF</p>
         </div>
       </section>
 

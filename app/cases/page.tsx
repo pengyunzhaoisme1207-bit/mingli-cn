@@ -5,13 +5,13 @@ import Footer from "@/components/Footer";
 import CaseCard from "@/components/CaseCard";
 
 export const metadata: Metadata = {
-  title: "Famous Bazi Charts — MÍNG LÌ",
+  title: "名人八字命盘 — MÍNG LÌ",
   description:
-    "Explore real and historical Bazi destiny charts — from Chinese leaders to Western celebrities. See how ancient astrology reveals patterns in wealth, career, and relationships.",
+    "探索真实的历史八字命盘——从中国领袖到西方名人。看古老的命理如何揭示财富、事业和感情中的规律。",
   openGraph: {
-    title: "Famous Bazi Charts — MÍNG LÌ",
+    title: "名人八字命盘 — MÍNG LÌ",
     description:
-      "Explore real and historical Bazi destiny charts — from Chinese leaders to Western celebrities.",
+      "探索真实的历史八字命盘——从中国领袖到西方名人。",
     type: "website",
   },
 };
@@ -19,138 +19,138 @@ export const metadata: Metadata = {
 const eastCases = [
   {
     emoji: "🥋",
-    name: "Bruce Lee 李小龙",
+    name: "李小龙",
     years: "1940–1973",
-    tagline: "Rewrote what the human body could do — left at the exact moment his chart predicted maximum tension.",
+    tagline: "重新定义人体极限——在命盘预示最大张力之时离去。",
     pillars: [
-      { label: "Year", stems: "庚 辰", sub: "Geng Metal · Chen Earth" },
-      { label: "Month", stems: "己 亥", sub: "Ji Earth · Hai Water" },
-      { label: "Day", stems: "戊 子", sub: "Wu Earth · Zi Water" },
-      { label: "Hour", stems: "—", sub: "Unverified" },
+      { label: "年", stems: "庚 辰", sub: "庚金 · 辰土" },
+      { label: "月", stems: "己 亥", sub: "己土 · 亥水" },
+      { label: "日", stems: "戊 子", sub: "戊土 · 子水" },
+      { label: "时", stems: "—", sub: "未考证" },
     ],
-    dayMaster: "Day Master: Wu Earth (戊土) · Weak",
-    pattern: "Pattern: Direct Officer (正官格)",
+    dayMaster: "日主：戊土 · 身弱",
+    pattern: "格局：正官格",
     readings: [
-      "Earth Day Master born in Water-dominant chart — constant pressure forges extraordinary discipline",
-      "Official Star overwhelming weak Earth — driven by external standards, destined to break them",
-      "1973 clash year activated hidden conflict in the chart — peak and end arriving simultaneously",
+      "土命生于水旺之局——持续的压力锻造出非凡的自律",
+      "官星克制弱土——被外在标准驱动，注定要打破它们",
+      "1973 冲年引动命局暗藏冲突——巅峰与终点同时到来",
     ],
-    quote: "A man who rewrote what the human body could do — and left at the exact moment his chart predicted maximum tension.",
-    expandedAnalysis: "Bruce Lee's chart is one of the most studied in modern Bazi circles. The weakness of his Earth Day Master surrounded by Water and Metal created a personality of relentless self-improvement — never satisfied, always forging. The Official Star pattern explains his deep need to prove himself against institutional resistance (Hollywood's rejection of Asian leads). His 1973 death occurred during a year when his clash pillars converged — the same configuration that produced his greatest films also carried the seed of his exit.",
+    quote: "重新定义人体极限的人——在命盘预示最大张力的那一刻离去。",
+    expandedAnalysis: "李小龙的命盘是现代八字研究中被研究最多的案例之一。土命元神被水金包围，造就了一种不断自我突破的性格——永不满足，百炼成钢。正官格解释了他需要在体制对抗中证明自己（好莱坞对亚裔主角的排斥）。1973 年去世正值冲年，命盘中的冲突支柱汇聚——造就他最伟大电影的同一种配置，也承载了他离去的种子。",
   },
   {
     emoji: "🎬",
-    name: "Run Run Shaw 邵逸夫",
-    years: "1907–2014 · Aged 107",
-    tagline: "Built a media empire, gave away billions, lived to 107.",
+    name: "邵逸夫",
+    years: "1907–2014 · 享年107岁",
+    tagline: "建立传媒帝国，捐赠数十亿，寿至 107 岁。",
     pillars: [
-      { label: "Year", stems: "丁 未", sub: "Ding Fire · Wei Earth" },
-      { label: "Month", stems: "癸 亥", sub: "Gui Water · Hai Water" },
-      { label: "Day", stems: "甲 午", sub: "Jia Wood · Wu Fire" },
-      { label: "Hour", stems: "—", sub: "Unverified" },
+      { label: "年", stems: "丁 未", sub: "丁火 · 未土" },
+      { label: "月", stems: "癸 亥", sub: "癸水 · 亥水" },
+      { label: "日", stems: "甲 午", sub: "甲木 · 午火" },
+      { label: "时", stems: "—", sub: "未考证" },
     ],
-    dayMaster: "Day Master: Jia Wood (甲木) · Strong",
-    pattern: "Pattern: Indirect Wealth (偏财格)",
+    dayMaster: "日主：甲木 · 身旺",
+    pattern: "格局：偏财格",
     readings: [
-      "Wood strong in Water month — wealth flows naturally; the Hai month nourishes the Jia Day Master like rain on a tree",
-      "Fire at the year pillar (Ding) signals early financial destiny — entrepreneurship was written into the chart from birth",
-      "Longevity explained by harmonious resource flow — Water produces Wood, Wood produces Fire; nothing stagnates",
+      "木旺生于亥月——财运自然流入；亥水滋养甲木，如雨露润泽",
+      "年柱丁火透出，早年即显财运——创业从命盘里就已注定",
+      "长寿源于五行流通有情——水生木、木生火，无一停滞",
     ],
-    quote: "Built a media empire spanning film, television, and education. Gave away billions in philanthropy. Lived to 107 — a chart where every element feeds the next in an unbroken chain.",
-    expandedAnalysis: "Run Run Shaw's chart is a textbook example of the Indirect Wealth pattern (偏财格) at its most successful. The strong Jia Wood Day Master, nourished by the Hai Water month, creates a tree that receives continuous rainfall — wealth flows naturally without effort. The Ding Fire at the year pillar signals early entrepreneurial destiny, and the Water-Wood-Fire production cycle (水生木生火) creates an unbroken chain of creative and financial energy. His 107-year lifespan is explained by the harmonious elemental flow — nothing stagnates, everything moves. Even in extreme old age, the chart's balance prevented the typical decline patterns.",
+    quote: "建立了横跨影视、电视、教育的传媒帝国。捐赠数十亿慈善。寿至 107 岁——命盘中每个元素依次相生，生生不息。",
+    expandedAnalysis: "邵逸夫的命盘是偏财格最成功的典型案例。甲木身旺，得亥月滋养，如同一棵不断接受雨露的大树——财运自然而来，无需费力。年柱丁火预示着早年的创业命运，水-木-火的相生链条（水生木生火）创造出创造力和财务能量的不间断循环。他 107 岁的寿命可以用五行的和谐流通来解释——没有停滞，一切都在流动。即使在极高龄，命盘的平衡也防止了典型的衰退模式。",
   },
   {
     emoji: "📖",
-    name: "Wang Yangming 王阳明",
+    name: "王阳明",
     years: "1472–1529",
-    tagline: "Philosopher-general who achieved unity of knowledge and action.",
+    tagline: "哲学家兼将领，知行合一的典范。",
     pillars: [
-      { label: "Year", stems: "壬 辰", sub: "Ren Water · Chen Earth" },
-      { label: "Month", stems: "庚 戌", sub: "Geng Metal · Xu Earth" },
-      { label: "Day", stems: "甲 子", sub: "Jia Wood · Zi Water" },
-      { label: "Hour", stems: "—", sub: "Estimated" },
+      { label: "年", stems: "壬 辰", sub: "壬水 · 辰土" },
+      { label: "月", stems: "庚 戌", sub: "庚金 · 戌土" },
+      { label: "日", stems: "甲 子", sub: "甲木 · 子水" },
+      { label: "时", stems: "—", sub: "推算" },
     ],
-    dayMaster: "Day Master: Jia Wood (甲木) · Weak",
-    pattern: "Pattern: Seven Killings (七杀格)",
+    dayMaster: "日主：甲木 · 身弱",
+    pattern: "格局：七杀格",
     readings: [
-      "Weak Jia Wood born in Earth month — pressure from all sides, yet the Zi Water in the Day branch provides critical resource support",
-      "Seven Killings pattern with Resource salvation — the classic scholar-warrior structure: extreme adversity tempered by inner wisdom",
-      "Chen-Xu clash in the Earth branches signals constant tension between idealism and pragmatism — the very engine of his philosophy",
+      "甲木身弱生于土月——四面受压，但日支子水提供了关键的印星支撑",
+      "七杀格配印星化杀——经典的儒将结构：极端逆境中由内在智慧淬炼",
+      "辰戌冲引动土支，理想主义与现实主义之间持续张力——这正是他哲学的引擎",
     ],
-    quote: "The greatest mind of Ming dynasty China — a philosopher who led armies, a general who wrote the most profound treatise on the mind.",
-    expandedAnalysis: "Wang Yangming's chart exhibits the Seven Killings pattern (七杀格) saved by Resource (印) — one of the most powerful structures in classical Bazi. The weak Jia Wood Day Master, surrounded by Earth and Metal, would normally indicate a life of constant pressure and hardship. But the Zi Water in the Day branch acts as the crucial salvation: Resource transforms Killing into authority. This is the signature of someone who turns adversity into wisdom. The Chen-Xu clash activates the Earth branches, creating a dynamic tension between his Confucian ideals (Chen) and his pragmatic military actions (Xu). His philosophy of 知行合一 (unity of knowledge and action) maps directly onto this chart's internal dialectic: the Resource star represents knowing, the Seven Killings represents acting. That they coexist in the same structure produces a mind where thought and deed are one.",
+    quote: "明代最伟大的思想家——一位领军队的哲学家，一位写出最深刻心学论著的将领。",
+    expandedAnalysis: "王阳明的命盘展现了七杀格配印星化杀——古典八字中最有力的结构之一。甲木身弱被土金包围，本应是一生压力与艰辛。但日支子水成为关键的救赎：印星化杀为权。这是将逆境转化为智慧的标志。辰戌冲引动地支，在他的儒家理想（辰）与现实军事行动（戌）之间产生动态张力。他的知行合一哲学直接映射到此命盘的内在辩证：印星代表知，七杀代表行。二者共存于同一结构，造就了思想与行动合一的头脑。",
   },
 ];
 
 const westCases = [
   {
     emoji: "🚀",
-    name: "Elon Musk",
-    years: "1971– · Born June 28, Pretoria, South Africa",
-    tagline: "PayPal → Tesla → SpaceX → X — wealth pattern repeating across industries.",
+    name: "埃隆·马斯克",
+    years: "1971– · 生于南非比勒陀利亚",
+    tagline: "PayPal → Tesla → SpaceX → X——财富模式跨行业重复。",
     pillars: [
-      { label: "Year", stems: "辛 亥", sub: "Xin Metal · Hai Water" },
-      { label: "Month", stems: "甲 午", sub: "Jia Wood · Wu Fire" },
-      { label: "Day", stems: "庚 辰", sub: "Geng Metal · Chen Earth" },
-      { label: "Hour", stems: "—", sub: "Estimated" },
+      { label: "年", stems: "辛 亥", sub: "辛金 · 亥水" },
+      { label: "月", stems: "甲 午", sub: "甲木 · 午火" },
+      { label: "日", stems: "庚 辰", sub: "庚金 · 辰土" },
+      { label: "时", stems: "—", sub: "推算" },
     ],
-    dayMaster: "Day Master: Geng Metal (庚金) · Strong",
-    pattern: "Pattern: Indirect Wealth (偏财格) — Wealth star dominant",
+    dayMaster: "日主：庚金 · 身旺",
+    pattern: "格局：偏财格——财星当权",
     readings: [
-      "Strong Metal Day Master — relentless drive, cuts through resistance, thrives under pressure; the forge makes the blade sharper",
-      "Wealth star dominant with Jia Wood in month pillar — multiple fortune streams, serial entrepreneurship is structural, not accidental",
-      "Clash pillars (Hai-Wu, Chen-Chen) indicate public controversy alongside meteoric rise — the chart shows both brilliance and turbulence",
+      "金旺日主—— relentless 驱动力，破除阻力，压力下 thrive；熔炉使剑更锋利",
+      "财星当权，月柱见甲木——多条财富线，连续创业是命盘结构使然，非偶然",
+      "冲支柱（亥午、辰辰）预示伴随崛起的公众争议——命盘同时展现才华与动荡",
     ],
-    quote: "From Zip2 to PayPal to Tesla to SpaceX to X — each venture follows the same Wealth-star pattern: identify a dominant industry, enter with force, disrupt the established order.",
+    quote: "从 Zip2 到 PayPal 到 Tesla 到 SpaceX 到 X——每次创业都遵循同样的财富模式：锁定巨头行业，强势进入，颠覆既有秩序。",
     disclaimer:
-      "Chart reconstructed from birth records using classical Bazi methodology. Western birth certificates record civil time only — True Solar Time has been calculated for Pretoria (25.7°E).",
-    expandedAnalysis: "Musk's chart reveals a classic serial entrepreneur structure. The strong Geng Metal Day Master — the forge, the sword — cuts through resistance and thrives under pressure. The Jia Wood in the month pillar creates multiple fortune streams, making serial entrepreneurship structural rather than accidental. The Hai-Wu clash indicates public controversy alongside meteoric rise, while the Chen-Chen self-penalty suggests a tendency toward self-sabotage at peak moments. Each venture follows the same Wealth-star pattern: identify a dominant industry, enter with force, and disrupt the established order. The chart shows both brilliance and turbulence in equal measure.",
+      "命盘基于出生记录以古典八字方法重建。西方出生证明仅记录标准时间——真太阳时已根据比勒陀利亚（25.7°E）计算。",
+    expandedAnalysis: "马斯克的命盘揭示了典型的连续创业者结构。庚金身旺——熔炉之剑——破除阻力，压力下反而更强。月柱甲木创造多条财富线，使连续创业成为结构性特征而非偶然。亥午冲预示伴随崛起的公众争议，辰辰自刑则暗示在巅峰时刻的自我破坏倾向。每次创业都遵循同样的财富星模式：锁定巨头行业，强势进入，颠覆既有秩序。命盘同时展现才华与动荡，势均力敌。",
   },
   {
     emoji: "💡",
-    name: "Steve Jobs",
-    years: "1955–2011 · Born February 24, San Francisco",
-    tagline: "Founding → exile → return → iPhone — a chart of dramatic reversals.",
+    name: "史蒂夫·乔布斯",
+    years: "1955–2011 · 生于旧金山",
+    tagline: "创立 → 放逐 → 回归 → iPhone——戏剧性反转的命盘。",
     pillars: [
-      { label: "Year", stems: "乙 未", sub: "Yi Wood · Wei Earth" },
-      { label: "Month", stems: "戊 寅", sub: "Wu Earth · Yin Wood" },
-      { label: "Day", stems: "甲 戌", sub: "Jia Wood · Xu Earth" },
-      { label: "Hour", stems: "—", sub: "Estimated" },
+      { label: "年", stems: "乙 未", sub: "乙木 · 未土" },
+      { label: "月", stems: "戊 寅", sub: "戊土 · 寅木" },
+      { label: "日", stems: "甲 戌", sub: "甲木 · 戌土" },
+      { label: "时", stems: "—", sub: "推算" },
     ],
-    dayMaster: "Day Master: Jia Wood (甲木) · Weak",
-    pattern: "Pattern: Hurting Officer (伤官格) — Creative genius structure",
+    dayMaster: "日主：甲木 · 身弱",
+    pattern: "格局：伤官格——创意天才结构",
     readings: [
-      "Jia Wood Day Master — visionary, growth-oriented, needs strong roots; the tree that reaches highest has the deepest foundation",
-      "Hurting Officer pattern — creative genius combined with disdain for convention; this is the classic &quot;artist who changes an industry&quot; structure",
-      "Early luck cycle clash explains the 1985 Apple exile; return to Apple timed with favorable Wood luck — the chart&apos;s turning point mirrors reality exactly",
+      "甲木日主——远见者，成长型，需要深厚根基；树欲参天，根必深厚",
+      "伤官格——创意天才与蔑视常规的结合；这是经典的「改变行业的艺术家」结构",
+      "早年大运冲克解释了 1985 年苹果放逐；回归恰逢有利木运——命盘转折与现实完全吻合",
     ],
-    quote: "Founding Apple at 21 → forced out at 30 → return at 42 → iPhone at 52. Each phase maps to a luck cycle shift. The Hurting Officer pattern demands creative freedom — and punishes convention at every turn.",
+    quote: "21 岁创立苹果 → 30 岁被迫离开 → 42 岁回归 → 52 岁 iPhone。每个阶段对应大运转换。伤官格需要绝对的创作自由——并在每个转角惩罚常规。",
     disclaimer:
-      "Chart reconstructed from birth records using classical Bazi methodology. Western birth certificates record civil time only — True Solar Time has been calculated for San Francisco (122.4°W).",
-    expandedAnalysis: "Steve Jobs' chart exhibits the Hurting Officer pattern (伤官格) — the classic creative genius structure that produces artists who change industries. The weak Jia Wood Day Master with Yi Wood support creates a tree with deep roots and high reach. The 1985 Apple exile maps perfectly to his early luck cycle clash; the return at 42 coincides with the Wood luck turning point that his chart demanded. Each career phase maps to a luck cycle shift with uncanny precision. The chart's defining tension: creative brilliance that demands absolute freedom versus the institutional structures that inevitably constrain it. The iPhone at 52 was the culmination — both systems at their peak alignment.",
+      "命盘基于出生记录以古典八字方法重建。西方出生证明仅记录标准时间——真太阳时已根据旧金山（122.4°W）计算。",
+    expandedAnalysis: "乔布斯的命盘展现了伤官格——经典的创意天才结构，产出改变行业的艺术家。甲木身弱得乙木帮扶，造就根深树高。1985 年的苹果放逐完美对应早年大运冲克；42 岁回归恰逢木运转折，正是命盘所需求的。每个职业阶段都以不可思议的精确度对应大运变化。命盘的核心张力：需要绝对自由的创意才华 vs. 必然限制它的体制结构。52 岁的 iPhone 是巅峰——两个系统最完美的对齐。",
   },
   {
     emoji: "👑",
-    name: "Princess Diana",
-    years: "1961–1997 · Born July 1, Sandringham",
-    tagline: "The People&apos;s Princess — loved universally, constrained by institution, tragedy at 36.",
+    name: "戴安娜王妃",
+    years: "1961–1997 · 生于英国桑德灵厄姆",
+    tagline: "人民的王妃——举世爱戴，被体制所困，36 岁悲剧离世。",
     pillars: [
-      { label: "Year", stems: "辛 丑", sub: "Xin Metal · Chou Earth" },
-      { label: "Month", stems: "甲 午", sub: "Jia Wood · Wu Fire" },
-      { label: "Day", stems: "癸 酉", sub: "Gui Water · You Metal" },
-      { label: "Hour", stems: "—", sub: "Estimated" },
+      { label: "年", stems: "辛 丑", sub: "辛金 · 丑土" },
+      { label: "月", stems: "甲 午", sub: "甲木 · 午火" },
+      { label: "日", stems: "癸 酉", sub: "癸水 · 酉金" },
+      { label: "时", stems: "—", sub: "推算" },
     ],
-    dayMaster: "Day Master: Gui Water (癸水) · Weak",
-    pattern: "Pattern: Direct Officer (正官格) — Officer star overwhelming",
+    dayMaster: "日主：癸水 · 身弱",
+    pattern: "格局：正官格——官星当权",
     readings: [
-      "Gui Water Day Master — deeply empathetic, absorbs others&apos; pain; the dewdrop that reflects the world but evaporates under pressure",
-      "Officer star overwhelms — marriage brings status and privilege but suppresses the self; the institution&apos;s weight crushes individual expression",
-      "1997 clash year (Ding Chou) activated a hidden conflict pillar — the fatal outcome was structurally foretold in the chart&apos;s internal tension",
+      "癸水日主——极具共情力，吸收他人之苦；映照世界的露珠，在压力下蒸发",
+      "官星当权——婚姻带来地位与特权，但压抑自我；体制的重量碾碎个性表达",
+      "1997 丁丑冲年引动命局暗藏冲突——悲剧结局在命盘内在张力中早有预示",
     ],
-    quote: "The People&apos;s Princess — beloved by millions, trapped by protocol. Her Gui Water nature made her connect with anyone, anywhere. But the overwhelming Officer star of the institution proved too heavy for the weak Day Master to bear.",
+    quote: "人民的王妃——百万人爱戴，被礼仪制度所困。她的癸水本性使她能随时随地与任何人共情。但体制压倒性的官星对于身弱的日主来说太过沉重。",
     disclaimer:
-      "Chart reconstructed from birth records using classical Bazi methodology. Western birth certificates record civil time only — True Solar Time has been calculated for Sandringham (0.6°E).",
-    expandedAnalysis: "Diana's chart is perhaps the clearest example of the Officer star overwhelming a weak Day Master. The Gui Water nature — the dewdrop that reflects the world — made her universally empathetic and beloved. The Xin Metal year stem gave her a quiet dignity that resonated with the public. But the Chou Earth in the year branch and the Wu Fire month created a chart under constant pressure: the institution's weight crushing individual expression. The 1997 Ding Chou year activated hidden conflict pillars that were structurally present from birth. Both Bazi and Zi Wei systems flagged this as a danger year — the fatal outcome was foretold in the chart's internal tension.",
+      "命盘基于出生记录以古典八字方法重建。西方出生证明仅记录标准时间——真太阳时已根据桑德灵厄姆（0.6°E）计算。",
+    expandedAnalysis: "戴安娜的命盘或许是官星压倒弱日主最清晰的例子。癸水本性——映照世界的露珠——使她举世共情、万人爱戴。年干辛金赋予她安静的尊严，与公众产生共鸣。但年支丑土与月支午火使命盘承受持续压力：体制重量碾碎个性表达。1997 丁丑年引动了命盘中从出生就存在的暗藏冲突支柱。八字和紫微系统都标记这是危险之年——悲剧结局在命盘内在张力中早有预示。",
   },
 ];
 
@@ -162,24 +162,24 @@ export default function CasesPage() {
       {/* ─── HERO ─── */}
       <section className="hero" style={{ paddingBottom: "3rem" }}>
         <div className="container">
-          <p className="section-label">Famous Cases</p>
+          <p className="section-label">名人案例</p>
           <h1 className="section-title" style={{ maxWidth: 640, margin: "0 auto 1rem" }}>
-            History&apos;s most studied charts
+            历史上被研究最多的命盘
           </h1>
           <p className="section-desc" style={{ margin: "0 auto" }}>
-            Six figures from East and West — fully analyzed using classical Bazi methodology and four major schools of scholarship.
+            六位东西方人物——以古典八字方法和四大流派完整分析。
           </p>
         </div>
       </section>
 
-      {/* ─── FROM THE EAST ─── */}
+      {/* ─── 东方人物 ─── */}
       <section className="case-group">
         <div className="container">
           <div className="case-group-header">
             <div className="case-group-label">
-              <span className="dot" /> From the East
+              <span className="dot" /> 东方人物
             </div>
-            <h2 className="case-group-title">Historical figures of Asia</h2>
+            <h2 className="case-group-title">亚洲历史人物</h2>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -190,19 +190,19 @@ export default function CasesPage() {
         </div>
       </section>
 
-      {/* ─── Separator ─── */}
+      {/* ─── 分隔 ─── */}
       <div className="container">
         <div className="group-separator" />
       </div>
 
-      {/* ─── FROM THE WEST ─── */}
+      {/* ─── 西方人物 ─── */}
       <section className="case-group">
         <div className="container">
           <div className="case-group-header">
             <div className="case-group-label">
-              <span className="dot" /> From the West
+              <span className="dot" /> 西方人物
             </div>
-            <h2 className="case-group-title">Western figures, reconstructed charts</h2>
+            <h2 className="case-group-title">西方人物 · 重建命盘</h2>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -216,13 +216,13 @@ export default function CasesPage() {
       {/* ─── FINAL CTA ─── */}
       <section className="final-cta">
         <div className="container">
-          <p className="section-label">Your Turn</p>
-          <h2 className="section-title">Curious about your own chart?</h2>
+          <p className="section-label">开始你的解读</p>
+          <h2 className="section-title">想知道你自己的命盘吗？</h2>
           <p className="section-desc" style={{ margin: "0 auto 2rem" }}>
-            Your destiny is just as layered. Find out what the Four Pillars reveal about you.
+            你的命运同样层次丰富。看看四柱揭示了你什么。
           </p>
           <Link href="/reading" className="btn btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.05rem" }}>
-            Get my reading &rarr;
+            开始解读 &rarr;
           </Link>
         </div>
       </section>

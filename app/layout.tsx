@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -16,13 +15,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MÍNG LÌ — Your Destiny, Decoded",
+  title: "MÍNG LÌ — 你的命运，由此可知",
   description:
-    "AI-powered Chinese astrology reading. Get a comprehensive Bazi + Zi Wei Dou Shu destiny report analyzed by four classical schools — delivered instantly in your browser.",
+    "AI 驱动的八字命理分析。融合四柱八字与紫微斗数，四家古典流派交叉验证——30 秒生成你的专属命理报告。",
   openGraph: {
-    title: "MÍNG LÌ — Your Destiny, Decoded",
+    title: "MÍNG LÌ — 你的命运，由此可知",
     description:
-      "AI-powered Chinese astrology reading. Get a comprehensive Bazi + Zi Wei Dou Shu destiny report.",
+      "AI 驱动的八字命理分析。融合四柱八字与紫微斗数，四家古典流派交叉验证。",
     type: "website",
   },
 };
@@ -33,14 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <head>
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7338826858147459"
-          strategy="beforeInteractive"
-          crossOrigin="anonymous"
-        />
-      </head>
+    <html lang="zh-CN" className={`${playfair.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );

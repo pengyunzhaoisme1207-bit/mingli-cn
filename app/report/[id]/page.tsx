@@ -6,27 +6,25 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { renderMarkdown } from "@/lib/renderMarkdown";
-// TODO: re-enable paywall when payment is ready
-// import UnlockCard from "@/components/UnlockCard";
 
 const chapterTitles: Record<string, string> = {
-  ch1: "八字排盘 / Bazi Chart Setup",
-  ch2: "日主强弱与格局 / Day Master & Pattern",
-  ch3: "形象、性情与健康 / Image, Temperament & Health",
-  ch4: "六亲与财官 / Family, Wealth & Career",
-  ch5: "大运流年 / Major Luck Cycles & Annual Years",
-  ch6: "补充推算 / Supplementary Calculations",
-  ch7: "四家投票 / Four Masters Voting",
-  ch8: "紫微斗数分析 / Zi Wei Dou Shu Analysis",
-  ch9: "双系统交叉验证 / Dual-System Cross Validation",
-  ch10: "综合建议 / Comprehensive Advice",
+  ch1: "八字排盘",
+  ch2: "日主强弱与格局",
+  ch3: "形象、性情与健康",
+  ch4: "六亲与财官",
+  ch5: "大运流年",
+  ch6: "补充推算",
+  ch7: "四家投票",
+  ch8: "紫微斗数分析",
+  ch9: "双系统交叉验证",
+  ch10: "综合建议",
 };
 
 const pillars = [
-  { label: "Year Pillar", stems: "庚 午", hidden: "Hidden Stems: Ding, Ji", tenGod: "7K · DO" },
-  { label: "Month Pillar", stems: "壬 子", hidden: "Hidden Stems: Gui", tenGod: "EG · EG" },
-  { label: "Day Pillar", stems: "庚 寅", hidden: "Hidden Stems: Jia, Bing, Wu", tenGod: "IW · 7K" },
-  { label: "Hour Pillar", stems: "辛 巳", hidden: "Hidden Stems: Bing, Wu, Geng", tenGod: "DW · 7K" },
+  { label: "年柱", stems: "庚 午", hidden: "藏干：丁、己", tenGod: "七杀 · 正官" },
+  { label: "月柱", stems: "壬 子", hidden: "藏干：癸", tenGod: "伤官 · 伤官" },
+  { label: "日柱", stems: "庚 寅", hidden: "藏干：甲、丙、戊", tenGod: "偏财 · 七杀" },
+  { label: "时柱", stems: "辛 巳", hidden: "藏干：丙、戊、庚", tenGod: "比肩 · 七杀" },
 ];
 
 export default function ReportPage() {
@@ -81,12 +79,12 @@ export default function ReportPage() {
         <Nav />
         <section style={{ paddingTop: "8rem", minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="container" style={{ textAlign: "center" }}>
-            <h2 className="section-title" style={{ marginBottom: "1rem" }}>This report has expired</h2>
+            <h2 className="section-title" style={{ marginBottom: "1rem" }}>报告已过期</h2>
             <p className="section-desc" style={{ margin: "0 auto 2rem" }}>
-              This report has expired or was opened in a different browser. Please generate a new reading.
+              此报告已过期，或在别的浏览器中打开过。请重新生成一次解读。
             </p>
             <Link href="/reading" className="btn btn-gold">
-              Get a new reading &rarr;
+              开始新的解读 &rarr;
             </Link>
           </div>
         </section>
@@ -100,25 +98,25 @@ export default function ReportPage() {
       <Nav />
       <section style={{ paddingTop: "8rem" }}>
         <div className="container">
-          {/* Report Header with Action Buttons */}
+          {/* 报告头部 + 操作按钮 */}
           <div className="report-top-bar">
             <div>
-              <p className="pillars-header-label">Your Chart</p>
+              <p className="pillars-header-label">你的命盘</p>
               <h2 className="pillars-header-title">
-                {info?.name ? `${info.name}&apos;s Four Pillars` : "Your Four Pillars"}
+                {info?.name ? `${info.name} 的四柱` : "你的四柱"}
               </h2>
             </div>
             <div className="report-actions">
               <button className="report-btn" onClick={handleCopyLink}>
-                {copied ? "✓ Link copied!" : "🔗 Copy link"}
+                {copied ? "✓ 链接已复制" : "🔗 复制链接"}
               </button>
               <button className="report-btn" onClick={handleDownloadPDF}>
-                📄 Download PDF
+                📄 下载 PDF
               </button>
             </div>
           </div>
 
-          {/* Four Pillars */}
+          {/* 四柱 */}
           <div className="pillars-table">
             {pillars.map((p, i) => (
               <div className="pillar" key={i}>
@@ -130,9 +128,9 @@ export default function ReportPage() {
             ))}
           </div>
 
-          {/* Report Layout */}
+          {/* 报告布局 */}
           <div className="report-layout">
-            {/* Sidebar */}
+            {/* 侧边导航 */}
             <nav className="report-sidebar">
               <ol className="chapter-nav-list">
                 {Object.entries(chapterTitles).map(([key, title]) => (
@@ -142,19 +140,17 @@ export default function ReportPage() {
                       className={`chapter-nav-link ${activeChapter === key ? "active" : ""}`}
                     >
                       <span className="chapter-nav-num">{key.replace("ch", "")}</span>
-                      {title.split("(")[0].trim()}
+                      {title}
                     </Link>
                   </li>
                 ))}
               </ol>
             </nav>
 
-            {/* Content */}
+            {/* 内容 */}
             <div className="report-content">
               {Object.entries(chapterTitles).map(([key, title]) => {
                 const content = chapters[key] || "";
-                // TODO: re-enable paywall when payment is ready
-                // const locked = key !== "ch1";
                 return (
                   <div key={key} id={key} className={`chapter ${false ? "chapter-locked" : ""}`}>
                     <div className="chapter-content">
@@ -163,20 +159,15 @@ export default function ReportPage() {
                       <div
                         className="chapter-body"
                         dangerouslySetInnerHTML={{
-                          __html: content ? renderMarkdown(content) : "<p><em>Generating&hellip;</em></p>",
+                          __html: content ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>",
                         }}
                       />
                     </div>
-                    {/* TODO: re-enable paywall when payment is ready */}
-                    {/* {false && <div className="chapter-overlay" />} */}
                   </div>
                 );
               })}
             </div>
           </div>
-
-          {/* TODO: re-enable paywall when payment is ready */}
-          {/* <UnlockCard /> */}
         </div>
       </section>
       <Footer />

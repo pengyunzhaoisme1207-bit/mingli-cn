@@ -4,48 +4,48 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "MÍNG LÌ — Your Destiny, Decoded",
+  title: "MÍNG LÌ — 你的命运，由此可知",
   description:
-    "AI-powered Chinese astrology reading. Get a comprehensive Bazi + Zi Wei Dou Shu destiny report analyzed by four classical schools — delivered instantly in your browser.",
+    "AI 驱动的八字命理分析。融合四柱八字与紫微斗数，四家古典流派交叉验证——30 秒生成你的专属命理报告。",
   openGraph: {
-    title: "MÍNG LÌ — Your Destiny, Decoded",
+    title: "MÍNG LÌ — 你的命运，由此可知",
     description:
-      "AI-powered Chinese astrology reading. Get a comprehensive Bazi + Zi Wei Dou Shu destiny report.",
+      "AI 驱动的八字命理分析。融合四柱八字与紫微斗数，四家古典流派交叉验证。",
     type: "website",
   },
 };
 
 const fourPillars = [
-  { chinese: "年", pinyin: "Nián", english: "YEAR PILLAR", desc: "Ancestral roots, early childhood, the era you were born into." },
-  { chinese: "月", pinyin: "Yuè", english: "MONTH PILLAR", desc: "Parents, career environment, dominant personality traits." },
-  { chinese: "日", pinyin: "Rì", english: "DAY PILLAR", desc: "You — the Day Master is your core element and identity." },
-  { chinese: "时", pinyin: "Shí", english: "HOUR PILLAR", desc: "Children, later years, hidden inner world." },
+  { chinese: "年", label: "年柱", desc: "祖上根基、幼年环境、时代背景。" },
+  { chinese: "月", label: "月柱", desc: "父母宫位、事业环境、核心性格特质。" },
+  { chinese: "日", label: "日柱", desc: "你自己——日干即本命元神，核心本质。" },
+  { chinese: "时", label: "时柱", desc: "子女归宿、晚年运势、内在隐秘世界。" },
 ];
 
 const features = [
-  { num: "01", title: "Four Classical Schools Vote", sub: "四家共识", desc: "Four independent scholarly traditions — Xu Lewu, Liang Xiangrun, Yuan Shushan, Wei Qianli — analyze your chart separately. When all four agree, the reading reaches highest confidence." },
-  { num: "02", title: "17 Classical Texts, 45,000 Knowledge Nodes", sub: "十七部典籍 · 四万五千节点", desc: "Our engine encodes the complete canon of Bazi scholarship from the Tang through Qing dynasties. No modern interpretations — only classical sources, applied mechanically." },
-  { num: "03", title: "Zi Wei Dou Shu Cross-Validation", sub: "紫微斗数交叉验证", desc: "An entirely independent system — Purple Star Astrology — verifies or challenges the Bazi reading across eight life dimensions. Dual systems, one truth." },
+  { num: "01", title: "四家流派交叉投票", sub: "四家共识", desc: "徐乐吾、梁湘润、袁树珊、韦千里——四大古典流派独立分析你的命盘。当四家结论一致时，解读可信度达到最高。" },
+  { num: "02", title: "十七部典籍 · 四万五千知识节点", sub: "十七部典籍 · 四万五千节点", desc: "完整编码唐至清全部八字命理典籍。无现代解读掺杂，仅以古典原文为据，逐条推演。" },
+  { num: "03", title: "紫微斗数交叉验证", sub: "紫微斗数交叉验证", desc: "另一套完全独立的命理体系——紫微斗数——在八个生命维度上验证八字结论。双系统，一真相。" },
 ];
 
 const cases = [
   {
     chinese: "武", watermark: "武者",
-    name: "Bruce Lee", years: "1940–1973",
-    pattern: "Direct Officer · 正官格",
-    quote: "Weak Earth forged in Water — relentless self-improvement, never satisfied, always forging."
+    name: "李小龙", years: "1940–1973",
+    pattern: "正官格",
+    quote: "弱土生于水旺——自强不息，永不满足，百炼成钢。"
   },
   {
     chinese: "智", watermark: "智者",
-    name: "Steve Jobs", years: "1955–2011",
-    pattern: "Hurting Officer · 伤官格",
-    quote: "Creative genius that demands freedom — punishes convention at every turn."
+    name: "乔布斯", years: "1955–2011",
+    pattern: "伤官格",
+    quote: "创意天才，不甘束缚——打破常规，颠覆一切。"
   },
   {
     chinese: "仁", watermark: "仁者",
-    name: "Princess Diana", years: "1961–1997",
-    pattern: "Direct Officer · 正官格",
-    quote: "The dewdrop that reflects the world — universally empathetic, crushed by institutional weight."
+    name: "戴安娜王妃", years: "1961–1997",
+    pattern: "正官格",
+    quote: "映照世间之露——悲悯众生，却被体制重压所摧。"
   },
 ];
 
@@ -58,24 +58,24 @@ export default function HomePage() {
       <section className="hp-hero">
         <div className="hp-watermark" aria-hidden="true">命</div>
         <div className="container hp-hero-inner">
-          <p className="hp-eyebrow">Chinese Destiny Analysis · Since the Tang Dynasty</p>
+          <p className="hp-eyebrow">千年古法 · 自唐至今</p>
           <h1 className="hp-hero-title">
-            The ancient science of<br /><em>knowing yourself</em>
+            知命之术<br /><em>认识你自己</em>
           </h1>
           <div className="hp-divider" />
           <p className="hp-hero-sub">
-            For over 1,000 years, emperors consulted Bazi before making decisions. Now trained on 17 classical texts and 45,000 knowledge nodes — yours takes 30 seconds.
+            千余年来，帝王决策先问八字。如今融汇十七部典籍、四万五千知识节点——你的命理报告，30 秒即可生成。
           </p>
           <div className="hp-hero-ctas">
             <Link href="/reading" className="hp-btn hp-btn-gold">
-              Reveal my destiny — $9.99
+              解读我的命运
             </Link>
             <Link href="/sample-report" className="hp-btn hp-btn-text">
-              See a sample report <span aria-hidden="true">→</span>
+              查看示例报告 <span aria-hidden="true">→</span>
             </Link>
           </div>
           <p className="hp-hero-note">
-            Delivered instantly · 10 chapters · English + Classical Chinese terms
+            即时交付 · 十章节 · 古文术语 + 现代解读
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function HomePage() {
             {fourPillars.map((p, i) => (
               <div className="hp-pillar" key={i}>
                 <span className="hp-pillar-char">{p.chinese}</span>
-                <p className="hp-pillar-en">{p.english}</p>
+                <p className="hp-pillar-en">{p.label}</p>
                 <p className="hp-pillar-sub">{p.desc}</p>
               </div>
             ))}
@@ -99,9 +99,9 @@ export default function HomePage() {
       <section className="hp-manifesto">
         <div className="container">
           <blockquote className="hp-manifesto-quote">
-            &ldquo;Bazi does not tell you what will happen. It tells you <em>who you are</em> — and when your time comes.&rdquo;
+            &ldquo;八字不告你<em>将来如何</em>，只告你<em>你是谁</em>——以及时机何时到来。&rdquo;
           </blockquote>
-          <p className="hp-manifesto-source">— From the Dripping Sky Marrow (滴天髓), Song Dynasty</p>
+          <p className="hp-manifesto-source">—— 《滴天髓》</p>
         </div>
       </section>
 
@@ -121,26 +121,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ════════════════ SECTION 4.5: ADSENSE AD ════════════════ */}
-      <section className="hp-ad-section">
-        <div className="container">
-          <ins
-            className="adsbygoogle"
-            style={{ display: "block", textAlign: "center" }}
-            data-ad-layout="in-article"
-            data-ad-format="fluid"
-            data-ad-client="ca-pub-7338826858147459"
-            data-ad-slot="1234567890"
-          />
-          <script dangerouslySetInnerHTML={{ __html: "(adsbygoogle = window.adsbygoogle || []).push({});" }} />
-        </div>
-      </section>
-
       {/* ════════════════ SECTION 5: FAMOUS CASES ════════════════ */}
       <section className="hp-cases">
         <div className="container">
-          <p className="hp-section-eyebrow">Famous Cases</p>
-          <h2 className="hp-section-title">History&apos;s charts, decoded</h2>
+          <p className="hp-section-eyebrow">名人案例</p>
+          <h2 className="hp-section-title">古今名盘，由此解码</h2>
           <div className="hp-cases-grid">
             {cases.map((c, i) => (
               <div className="hp-case" key={i}>
@@ -155,7 +140,7 @@ export default function HomePage() {
           </div>
           <div className="hp-cases-cta">
             <Link href="/cases" className="hp-btn hp-btn-text">
-              Explore all cases <span aria-hidden="true">→</span>
+              查看全部案例 <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -165,14 +150,14 @@ export default function HomePage() {
       <section className="hp-final">
         <div className="hp-watermark" aria-hidden="true">命</div>
         <div className="container hp-final-inner">
-          <h2 className="hp-final-title">What does your chart say?</h2>
+          <h2 className="hp-final-title">你的命盘说了什么？</h2>
           <p className="hp-final-sub">
-            A complete 10-chapter destiny report. Day Master, pattern, luck cycles, four-school consensus, Zi Wei cross-validation, and a personal action plan.
+            十章节完整命理报告：日主、格局、大运、四家共识、紫微斗数交叉验证，以及个人化行动建议。
           </p>
           <Link href="/reading" className="hp-btn hp-btn-gold hp-btn-lg">
-            Begin my reading
+            开始我的解读
           </Link>
-          <p className="hp-final-note">$9.99 · One-time · Delivered instantly</p>
+          <p className="hp-final-note">¥29.9 · 一次性付费 · 即时生成</p>
         </div>
       </section>
 
