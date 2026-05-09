@@ -238,17 +238,6 @@ export default function ReadingPage() {
     };
   }, []);
 
-  // 支付成功后跳转到报告页
-  useEffect(() => {
-    if (isUnlocked && pendingOrderNo) {
-      const reportId = localStorage.getItem("pending_report_id");
-      if (reportId) {
-        console.log("[payment] 解锁后跳转到报告页:", reportId);
-        router.push(`/report/${reportId}`);
-      }
-    }
-  }, [isUnlocked]);
-
   return (
     <>
       <Nav />
