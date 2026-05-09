@@ -133,7 +133,7 @@ export default function ReadingPage() {
       // 1. 调用后端创建订单
       const result = await createPayOrder({
         product_name: "MÍNG LÌ 命理深度报告",
-        amount: 4.9,
+        amount: 0.01,
         project_id: "mingli-cn",
       });
       if (!result.pay_url) throw new Error("未获取到支付链接");
@@ -490,7 +490,7 @@ export default function ReadingPage() {
                     <div className="paywall-divider" />
                     <p className="paywall-price">
                       <span className="paywall-price-original">¥9.9</span>
-                      <span className="paywall-price-promo">限时优惠 ¥4.9</span>
+                      <span className="paywall-price-promo">测试价格 ¥0.01</span>
                     </p>
                     <button
                       className={`paywall-btn ${isProcessing ? "paywall-btn-loading" : ""}`}
@@ -503,7 +503,7 @@ export default function ReadingPage() {
                           正在处理...
                         </>
                       ) : (
-                        "支付 ¥4.9 解锁全篇"
+                        "支付 ¥0.01 解锁全篇"
                       )}
                     </button>
                   </div>
