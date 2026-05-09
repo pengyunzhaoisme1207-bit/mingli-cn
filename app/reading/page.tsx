@@ -130,17 +130,22 @@ export default function ReadingPage() {
   async function handleUnlock() {
     setIsProcessing(true);
     try {
+      // 1. 调用后端创建订单
       const result = await createPayOrder({
         product_name: "MÍNG LÌ 命理深度报告",
         amount: 4.9,
         project_id: "mingli-cn",
       });
-      setPendingOrderNo(result.order_no);
-      // 保存 report_id 以便支付后恢复
-      localStorage.setItem(`pending_order_${result.order_no}`, reportId);
-      // 跳转虎皮椒支付页面
+      if (!result.pay_url) throw new Error("未获取到支付链接");
+
+      // 2. 把 order_no 和 report_id 存到 localStorage（支付完回来轮询用）
+      localStorage.setItem("pending_order_no", result.order_no);
+      localStorage.setItem("pending_report_id", reportId);
+
+      // 3. 跳转到虎皮椒支付页面
       window.location.href = result.pay_url;
-    } catch {
+    } catch (error) {
+      console.error("创建订单失败:", error);
       setError("创建支付订单失败，请稍后重试");
       setPhase("form");
     } finally {
@@ -185,28 +190,40 @@ export default function ReadingPage() {
     }
   }, [hasPaidContent, isUnlocked]);
 
-  // 支付返回后轮询订单状态
+  // 页面加载时从 localStorage 读取 pending order，开始轮询支付状态
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const orderNo = params.get("order_no");
-    if (!orderNo) return;
+    const pendingOrderNo = localStorage.getItem("pending_order_no");
+    if (!pendingOrderNo) return;
 
-    setPendingOrderNo(orderNo);
+    console.log("[payment] 开始轮询订单状态:", pendingOrderNo);
+
     const interval = setInterval(async () => {
       try {
-        const status = await checkPayStatus(orderNo);
+        const status = await checkPayStatus(pendingOrderNo);
+        console.log("[payment] 轮询结果:", status.status);
         if (status.status === "paid") {
-          setIsUnlocked(true);
+          console.log("[payment] 支付成功，解锁内容");
           clearInterval(interval);
-          // 清除 URL 参数
-          window.history.replaceState({}, "", window.location.pathname);
+          localStorage.removeItem("pending_order_no");
+          localStorage.removeItem("pending_report_id");
+          setIsUnlocked(true);
+          setPendingOrderNo("");
         }
-      } catch {
-        // 网络错误，继续轮询
+      } catch (e) {
+        console.error("[payment] 轮询失败:", e);
       }
     }, 2000);
 
-    return () => clearInterval(interval);
+    // 5 分钟超时停止轮询
+    const timeout = setTimeout(() => {
+      console.log("[payment] 轮询超时，停止");
+      clearInterval(interval);
+    }, 300000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
