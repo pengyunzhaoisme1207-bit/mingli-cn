@@ -22,12 +22,23 @@ export default function WhatIsBaziPage() {
       <Nav />
 
       {/* ─── HERO ─── */}
-      <section style={{ paddingTop: "8rem", paddingBottom: "2rem", textAlign: "center" }}>
-        <div className="container">
-          <h1 className="text-4xl md:text-5xl font-bold text-center text-[#fcd34d] mb-4">
+      <section className="relative overflow-hidden" style={{ paddingBottom: "2rem" }}>
+        {/* 背景图 */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('/images/hero-bg.webp')`,
+          }}
+        />
+        {/* 深色渐变遮罩 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1115]/80 to-[#0f1115]" />
+
+        {/* 文案 */}
+        <div className="container relative z-10" style={{ paddingTop: "8rem" }}>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4" style={{ color: "#fcd34d" }}>
             什么是八字？
           </h1>
-          <p className="text-lg text-gray-300 text-center tracking-wide mb-12">
+          <p className="text-lg text-center tracking-wide mb-12" style={{ color: "#9ca3af" }}>
             四柱命理——中国最精密的人类命运解析体系，历经千年锤炼。
           </p>
         </div>
