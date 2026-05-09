@@ -8,6 +8,7 @@ const links = [
   { href: "/what-is-bazi", label: "什么是八字" },
   { href: "/cases", label: "名人案例" },
   { href: "/sample-report", label: "示例报告" },
+  { href: "/library", label: "典籍文库" },
 ];
 
 export default function Nav() {
