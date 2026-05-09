@@ -48,6 +48,12 @@ export default function ReportPage() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
+    // 如果 pay-success 页面跳过来带了 unlocked 参数，直接解锁
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("unlocked") === "true") {
+      setIsUnlocked(true);
+      window.history.replaceState({}, "", window.location.pathname);
+    }
     const stored = localStorage.getItem(`report_${id}`);
     if (stored) {
       const data = JSON.parse(stored);
@@ -74,40 +80,14 @@ export default function ReportPage() {
     return () => observer.disconnect();
   }, [chapters]);
 
-  // 页面加载时从 localStorage 读取 pending order，开始轮询支付状态
+  // 页面加载时检查是否有支付返回的用户
   useEffect(() => {
     const pendingOrderNo = localStorage.getItem("pending_order_no");
-    if (!pendingOrderNo) return;
+    const pendingReportUrl = localStorage.getItem("pending_report_url");
+    if (!pendingOrderNo || !pendingReportUrl) return;
 
-    console.log("[payment] 检测到待支付订单，开始轮询:", pendingOrderNo);
-
-    const interval = setInterval(async () => {
-      try {
-        const data = await checkPayStatus(pendingOrderNo);
-        console.log("[payment] 轮询结果:", JSON.stringify(data));
-        if (data.status === "paid") {
-          console.log("[payment] 支付成功！解锁内容");
-          clearInterval(interval);
-          localStorage.removeItem("pending_order_no");
-          localStorage.removeItem("pending_report_id");
-          localStorage.removeItem("pending_report_url");
-          setIsUnlocked(true);
-        }
-      } catch (e: any) {
-        console.error("[payment] 轮询失败:", e.message);
-      }
-    }, 2000);
-
-    // 10 分钟超时停止轮询
-    const timeout = setTimeout(() => {
-      console.log("[payment] 10 分钟超时，停止轮询");
-      clearInterval(interval);
-    }, 600000);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
+    // 直接跳转到 pay-success 页面，由它负责轮询和跳转报告页
+    router.push("/pay-success");
   }, []);
 
   async function handleUnlock() {
@@ -124,6 +104,7 @@ export default function ReportPage() {
       // 2. 把 order_no 存到 localStorage（支付完回来用）
       localStorage.setItem("pending_order_no", result.order_no);
       localStorage.setItem("pending_report_id", id);
+      localStorage.setItem("pending_report_url", `/report/${id}`);
 
       // 3. 跳转到虎皮椒支付页面
       window.location.href = result.pay_url;

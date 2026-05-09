@@ -138,10 +138,10 @@ export default function ReadingPage() {
       });
       if (!result.pay_url) throw new Error("未获取到支付链接");
 
-      // 2. 把 order_no 和 report 信息存到 localStorage（支付完回来轮询用）
+      // 2. 把 order_no 和报告信息存到 localStorage（支付完回来用）
       localStorage.setItem("pending_order_no", result.order_no);
       localStorage.setItem("pending_report_id", reportId);
-      localStorage.setItem("pending_report_url", window.location.href);
+      localStorage.setItem("pending_report_url", `/report/${reportId}`);
 
       console.log("[payment] 跳转支付，order_no:", result.order_no, "reportId:", reportId);
 
@@ -193,49 +193,15 @@ export default function ReadingPage() {
     }
   }, [hasPaidContent, isUnlocked]);
 
-  // 页面加载时从 localStorage 读取 pending order，开始轮询支付状态
+  // 页面加载时检查是否有支付返回的用户
   useEffect(() => {
     const pendingOrderNo = localStorage.getItem("pending_order_no");
     const pendingReportUrl = localStorage.getItem("pending_report_url");
-    if (!pendingOrderNo) return;
+    if (!pendingOrderNo || !pendingReportUrl) return;
 
-    console.log("[payment] 检测到待支付订单，开始轮询:", pendingOrderNo);
-    console.log("[payment] 原报告页 URL:", pendingReportUrl);
-
-    const poll = setInterval(async () => {
-      try {
-        const data = await checkPayStatus(pendingOrderNo);
-        console.log("[payment] 轮询结果:", JSON.stringify(data));
-
-        if (data.status === "paid") {
-          console.log("[payment] 支付成功！清除缓存并跳转到报告页");
-          clearInterval(poll);
-          const pendingRid = localStorage.getItem("pending_report_id");
-          localStorage.removeItem("pending_order_no");
-          localStorage.removeItem("pending_report_id");
-          localStorage.removeItem("pending_report_url");
-          setIsUnlocked(true);
-          if (pendingRid) {
-            router.push(`/report/${pendingRid}`);
-          }
-        } else {
-          console.log("[payment] 当前状态:", data.status, "继续轮询...");
-        }
-      } catch (e: any) {
-        console.error("[payment] 轮询失败:", e.message);
-      }
-    }, 2000);
-
-    // 10 分钟超时停止轮询
-    const timeout = setTimeout(() => {
-      console.log("[payment] 10 分钟超时，停止轮询");
-      clearInterval(poll);
-    }, 600000);
-
-    return () => {
-      clearInterval(poll);
-      clearTimeout(timeout);
-    };
+    // 直接跳转到 pay-success 页面，由它负责轮询和跳转报告页
+    console.log("[payment] 检测到支付返回，跳转到支付确认页");
+    router.push("/pay-success");
   }, []);
 
   return (
