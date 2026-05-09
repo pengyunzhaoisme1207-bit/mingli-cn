@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { createPayOrder, checkPayStatus } from "@/lib/payment";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 
 const chapterTitles: Record<string, string> = {
@@ -73,12 +74,57 @@ export default function ReportPage() {
     return () => observer.disconnect();
   }, [chapters]);
 
+  // 页面加载时从 localStorage 读取 pending order，开始轮询支付状态
+  useEffect(() => {
+    const pendingOrderNo = localStorage.getItem("pending_order_no");
+    if (!pendingOrderNo) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const status = await checkPayStatus(pendingOrderNo);
+        if (status.status === "paid") {
+          clearInterval(interval);
+          localStorage.removeItem("pending_order_no");
+          localStorage.removeItem("pending_report_id");
+          setIsUnlocked(true);
+        }
+      } catch {
+        // 网络错误，继续轮询
+      }
+    }, 2000);
+
+    // 5 分钟超时停止轮询
+    const timeout = setTimeout(() => clearInterval(interval), 300000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, []);
+
   async function handleUnlock() {
     setIsProcessing(true);
-    // 模拟支付请求（2 秒）
-    await new Promise((r) => setTimeout(r, 2000));
-    setIsProcessing(false);
-    setIsUnlocked(true);
+    try {
+      // 1. 调用后端创建订单
+      const result = await createPayOrder({
+        product_name: "MÍNG LÌ 命理深度报告",
+        amount: 4.9,
+        project_id: "mingli-cn",
+      });
+      if (!result.pay_url) throw new Error("未获取到支付链接");
+
+      // 2. 把 order_no 存到 localStorage（支付完回来用）
+      localStorage.setItem("pending_order_no", result.order_no);
+      localStorage.setItem("pending_report_id", id);
+
+      // 3. 跳转到虎皮椒支付页面
+      window.location.href = result.pay_url;
+    } catch (error) {
+      console.error("创建订单失败:", error);
+      setNotFound(true);
+    } finally {
+      setIsProcessing(false);
+    }
   }
 
   function handleCopyLink() {
