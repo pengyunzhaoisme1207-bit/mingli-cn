@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -39,6 +39,7 @@ const FREE_CHAPTERS = ["ch1", "ch2", "ch3"];
 export default function ReportPage() {
   const params = useParams();
   const id = params.id as string;
+  const router = useRouter();
   const [chapters, setChapters] = useState<Record<string, string>>({});
   const [activeChapter, setActiveChapter] = useState("ch1");
   const [info, setInfo] = useState<{ name: string } | null>(null);
