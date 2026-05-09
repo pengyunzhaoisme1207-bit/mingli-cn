@@ -8,16 +8,21 @@ import Footer from "@/components/Footer";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 
 const chapterTitles: Record<string, string> = {
-  ch1: "八字排盘",
-  ch2: "日主强弱与格局",
-  ch3: "形象、性情与健康",
-  ch4: "六亲与财官",
-  ch5: "大运流年",
-  ch6: "补充推算",
-  ch7: "四家投票",
-  ch8: "紫微斗数分析",
-  ch9: "双系统交叉验证",
-  ch10: "综合建议",
+  ch1: "八字排盘（编码）",
+  ch2: "识日主（日主性质与喜忌）",
+  ch3: "观月令（节气与当令之气）",
+  ch4: "日主强弱分析",
+  ch5: "调候分析",
+  ch6: "格局分析",
+  ch7: "形象分析（清浊/真假/源流/通关）",
+  ch8: "用神取用（全局喜忌）",
+  ch9: "性情论",
+  ch10: "疾病提示",
+  ch11: "六亲分析",
+  ch12: "财官（富贵贫贱）",
+  ch13: "大运流年",
+  ch14: "神煞辅助验证与补充推算",
+  ch15: "综合判断与建议",
 };
 
 const pillars = [
@@ -206,7 +211,7 @@ export default function ReportPage() {
                     <h3 className="paywall-title">深度解析报告已生成</h3>
                     <p className="paywall-desc">
                       包含学业潜力、性格短板及核心培养建议。<br />
-                      完整解读涵盖十章节命理分析与紫微斗数交叉验证。
+                      完整解读涵盖十五章命理分析与紫微斗数交叉验证。
                     </p>
                     <div className="paywall-divider" />
                     <p className="paywall-price">

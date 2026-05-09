@@ -25,7 +25,7 @@ const fourPillars = [
 const features = [
   { num: "01", title: "四家流派交叉投票", sub: "四家共识", desc: "徐乐吾、梁湘润、袁树珊、韦千里——四大古典流派独立分析你的命盘。当四家结论一致时，解读可信度达到最高。" },
   { num: "02", title: "十七部典籍 · 四万五千知识节点", sub: "十七部典籍 · 四万五千节点", desc: "完整编码唐至清全部八字命理典籍。无现代解读掺杂，仅以古典原文为据，逐条推演。" },
-  { num: "03", title: "紫微斗数交叉验证", sub: "紫微斗数交叉验证", desc: "另一套完全独立的命理体系——紫微斗数——在八个生命维度上验证八字结论。双系统，一真相。" },
+  { num: "03", title: "十五章十五步排盘总纲", sub: "十五步排盘", desc: "严格遵循古典十五步排盘流程——编码、识日主、观月令、强弱、调候、格局、形象、用神、性情、疾病、六亲、财官、大运、神煞、综合判断。每一步不得跳步。" },
 ];
 
 const cases = [
@@ -75,7 +75,7 @@ export default function HomePage() {
             </Link>
           </div>
           <p className="hp-hero-note">
-            即时交付 · 十章节 · 古文术语 + 现代解读
+            即时交付 · 十五章 · 古文术语 + 现代解读
           </p>
         </div>
       </section>
@@ -152,7 +152,7 @@ export default function HomePage() {
         <div className="container hp-final-inner">
           <h2 className="hp-final-title">你的命盘说了什么？</h2>
           <p className="hp-final-sub">
-            十章节完整命理报告：日主、格局、大运、四家共识、紫微斗数交叉验证，以及个人化行动建议。
+            十五章完整命理报告：日主、格局、大运、四家共识、紫微斗数交叉验证，以及个人化行动建议。
           </p>
           <Link href="/reading" className="hp-btn hp-btn-gold hp-btn-lg">
             开始我的解读
