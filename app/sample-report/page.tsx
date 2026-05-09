@@ -19,13 +19,13 @@ const chapterTitles: Record<string, string> = {
   ch10: "综合建议",
 };
 
-// 真实 AI 生成报告示例：Alex Chen
+// 真实 AI 生成报告示例：陈明远
 // 生成时间：2026-05-08 via qwen3.6-plus
 const samplePillars = [
-  { label: "年柱", stems: "乙 丑", hidden: "己、癸、辛", tenGod: "劫财 / 正财" },
-  { label: "月柱", stems: "己 丑", hidden: "己、癸、辛", tenGod: "正财 / 正财" },
-  { label: "日柱", stems: "甲 寅", hidden: "甲、丙、戊", tenGod: "日主 / 比肩" },
-  { label: "时柱", stems: "乙 亥", hidden: "壬、甲", tenGod: "劫财 / 偏印" },
+  { label: "年柱", stems: "庚 午", hidden: "藏干：丁、己", tenGod: "正官 · 七杀" },
+  { label: "月柱", stems: "己 卯", hidden: "藏干：乙", tenGod: "正财 · 劫财" },
+  { label: "日柱", stems: "丙 申", hidden: "藏干：庚、壬、戊", tenGod: "日主 · 偏财" },
+  { label: "时柱", stems: "癸 巳", hidden: "藏干：丙、戊、庚", tenGod: "正官 · 偏财" },
 ];
 
 // AI 生成的章节内容（中英双语）
@@ -34,7 +34,7 @@ const sampleChapters: Record<string, string> = {
 
 **第一步：编码（阳历→真太阳时→四柱干支+藏干→大运→起运年龄→流年）**
 
-公历1986年1月20日21:00，纽约（西经74°）。经度校正与均时差换算后，真太阳时约为20:53，落入戌时与亥时交界。依古法以整点21:00为界，取亥时。逆数至小寒（1月5日）共15日，三日为一岁，五岁起运。阴年男命逆排大运。
+公历1990年3月15日14:30，中国广东深圳（东经114°）。经度校正与均时差换算后，真太阳时约为14:18，落入午时。顺数至惊蛰（3月6日）共9日，三日为一岁，三岁起运。阳年男命顺排大运。
 
 | 柱位 | 天干 | 地支 | 藏干 | 纳音 | 空亡 |
 |---|---|---|---|---|---|
@@ -153,7 +153,7 @@ export default function SampleReportPage() {
   const [activeChapter, setActiveChapter] = useState("ch1");
 
   useEffect(() => {
-    document.title = "示例报告 — Alex Chen — MÍNG LÌ";
+    document.title = "示例报告 — 陈明远 — MÍNG LÌ";
   }, []);
 
   useEffect(() => {
@@ -182,10 +182,10 @@ export default function SampleReportPage() {
           <div className="sample-hero-inner">
             <p className="section-label">示例报告 — 这就是你的报告样子</p>
             <h1 className="section-title" style={{ maxWidth: 640, margin: "0 auto 0.8rem" }}>
-              Alex Chen
+              陈明远
             </h1>
             <p className="section-desc" style={{ marginBottom: 0 }}>
-              1986年1月20日 · 21:00 · 美国纽约
+              1990年3月15日 · 14:30 · 中国广东深圳
             </p>
             <p className="section-desc" style={{ marginTop: "0.5rem", fontSize: "0.82rem", color: "var(--text-dim)" }}>
               日主：甲木 · 身旺 · 正财格
@@ -250,12 +250,16 @@ export default function SampleReportPage() {
           <p className="section-label">开始你的解读</p>
           <h2 className="section-title">你的报告也会如此详尽——而且完全关于你</h2>
           <p className="section-desc" style={{ margin: "0 auto 2rem" }}>
-            Alex 的报告只用了 30 秒。你的也在等待。
+            陈明远的报告只用了 30 秒。你的也在等待。
           </p>
           <Link href="/reading" className="btn btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.05rem", marginBottom: "1rem" }}>
             开始我的解读 &rarr;
           </Link>
-          <p className="final-price">¥29.9 &middot; 一次性付费 &middot; 即时生成 &middot; 含 PDF</p>
+          <p className="final-price">
+            <span className="price-original">¥9.9</span>
+            <span className="price-promo">限时优惠 ¥4.9</span>
+            &middot; 一次性付费 &middot; 即时生成
+          </p>
         </div>
       </section>
 

@@ -1814,9 +1814,9 @@ section.hero {
 /* ── Shared ── */
 .hp-section-eyebrow {
   text-align: center;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.2em;
   color: var(--gold);
   margin-bottom: 1rem;
 }
@@ -1863,9 +1863,9 @@ section.hero {
 }
 
 .hp-eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.88rem;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   color: var(--gold);
   margin-bottom: 2.5rem;
 }
@@ -1990,26 +1990,26 @@ section.hero {
 
 .hp-pillar-char {
   display: block;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--gold);
-  opacity: 0.15;
+  opacity: 0.35;
   line-height: 1;
   margin-bottom: 0.5rem;
 }
 
 .hp-pillar-en {
-  font-size: 0.7rem;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: var(--text);
+  letter-spacing: 0.15em;
+  color: var(--gold);
   margin-bottom: 0.5rem;
 }
 
 .hp-pillar-sub {
-  font-size: 0.82rem;
-  color: var(--text-dim);
+  font-size: 0.92rem;
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -2218,6 +2218,24 @@ section.hero {
   opacity: 0.6;
   position: relative;
   z-index: 1;
+}
+
+.hp-final-price {
+  margin-top: 1.5rem;
+  font-size: 0.88rem;
+  opacity: 1;
+}
+
+.hp-price-original {
+  text-decoration: line-through;
+  color: var(--text-dim);
+  margin-right: 0.5rem;
+}
+
+.hp-price-promo {
+  color: var(--gold);
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 /* ── Responsive ── */
@@ -2800,6 +2818,56 @@ section.hero {
     font-size: 1.25rem;
   }
 }
+
+.price-original {
+  text-decoration: line-through;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.price-promo {
+  color: var(--gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ── Region selector dropdowns ── */
+.region-selector {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.region-select {
+  flex: 1;
+  min-width: 100px;
+  padding: 0.7rem 0.8rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: var(--font-inter, sans-serif);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%238C8A7F' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.2s;
+}
+
+.region-select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.region-select option {
+  background: var(--bg-raised);
+  color: var(--text);
+}
+
 @media print {
   .nav,
   .footer,

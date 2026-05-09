@@ -157,7 +157,11 @@ export default function HomePage() {
           <Link href="/reading" className="hp-btn hp-btn-gold hp-btn-lg">
             开始我的解读
           </Link>
-          <p className="hp-final-note">¥29.9 · 一次性付费 · 即时生成</p>
+          <p className="hp-final-note hp-final-price">
+            <span className="hp-price-original">¥9.9</span>
+            <span className="hp-price-promo">限时优惠 ¥4.9</span>
+          </p>
+          <p className="hp-final-note">一次性付费 · 即时生成</p>
         </div>
       </section>
 

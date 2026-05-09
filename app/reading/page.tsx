@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { streamReport, type BirthInfo } from "@/lib/api";
 import { renderMarkdown } from "@/lib/renderMarkdown";
+import { allRegions, getCities, getDistricts } from "@/lib/regions";
 
 // 前 3 章免费（约 30%），其余付费
 const FREE_CHAPTERS = new Set(["ch1", "ch2", "ch3"]);
@@ -27,6 +28,21 @@ export default function ReadingPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasPaidContent, setHasPaidContent] = useState(false);
 
+  // 地区联动状态
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+
+  // 根据省份获取城市列表
+  const availableCities = selectedProvince ? getCities(selectedProvince) : [];
+  const availableDistricts = selectedProvince && selectedCity ? getDistricts(selectedProvince, selectedCity) : [];
+
+  // 构建完整的出生地字符串
+  function getFullBirthPlace(): string {
+    const parts = [selectedProvince, selectedCity, selectedDistrict].filter(Boolean);
+    return parts.join(" ");
+  }
+
   const formRef = useRef<HTMLFormElement>(null);
   const paywallRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -40,7 +56,7 @@ export default function ReadingPage() {
       name: fd.get("fullName") as string,
       birth_date: fd.get("birthDate") as string,
       birth_time: fd.get("birthTime") as string,
-      birth_place: fd.get("birthPlace") as string,
+      birth_place: getFullBirthPlace() || (fd.get("birthPlace") as string),
       gender: fd.get("gender") as string,
     };
 
@@ -210,8 +226,55 @@ export default function ReadingPage() {
                   <p className="form-note">越准确越好——15 分钟的差距也会影响命盘</p>
 
                   <div className="form-group" style={{ marginTop: "1rem" }}>
-                    <label className="form-label" htmlFor="birthPlace">出生地点</label>
-                    <input className="form-input" type="text" id="birthPlace" name="birthPlace" placeholder="城市，国家/地区" required />
+                    <label className="form-label">出生地点</label>
+                    <div className="region-selector">
+                      <select
+                        className="region-select"
+                        value={selectedProvince}
+                        onChange={(e) => {
+                          setSelectedProvince(e.target.value);
+                          setSelectedCity("");
+                          setSelectedDistrict("");
+                        }}
+                        required
+                      >
+                        <option value="">选择省份</option>
+                        {allRegions.map((p) => (
+                          <option key={p.name} value={p.name}>{p.name}</option>
+                        ))}
+                      </select>
+
+                      {selectedProvince && (
+                        <select
+                          className="region-select"
+                          value={selectedCity}
+                          onChange={(e) => {
+                            setSelectedCity(e.target.value);
+                            setSelectedDistrict("");
+                          }}
+                          required
+                        >
+                          <option value="">选择城市</option>
+                          {availableCities.map((c) => (
+                            <option key={c.name} value={c.name}>{c.name}</option>
+                          ))}
+                        </select>
+                      )}
+
+                      {selectedCity && availableDistricts.length > 0 && (
+                        <select
+                          className="region-select"
+                          value={selectedDistrict}
+                          onChange={(e) => setSelectedDistrict(e.target.value)}
+                          required
+                        >
+                          <option value="">选择区县</option>
+                          {availableDistricts.map((d) => (
+                            <option key={d} value={d}>{d}</option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
                   </div>
 
                   <div className="form-group">
@@ -340,8 +403,8 @@ export default function ReadingPage() {
                     </p>
                     <div className="paywall-divider" />
                     <p className="paywall-price">
-                      <span className="paywall-currency">¥</span>
-                      <span className="paywall-amount">9.9</span>
+                      <span className="paywall-price-original">¥9.9</span>
+                      <span className="paywall-price-promo">限时优惠 ¥4.9</span>
                     </p>
                     <button
                       className={`paywall-btn ${isProcessing ? "paywall-btn-loading" : ""}`}
@@ -354,7 +417,7 @@ export default function ReadingPage() {
                           正在处理...
                         </>
                       ) : (
-                        "支付 ¥9.9 解锁全篇"
+                        "支付 ¥4.9 解锁全篇"
                       )}
                     </button>
                   </div>
@@ -445,17 +508,21 @@ export default function ReadingPage() {
           color: var(--text);
           font-weight: 700;
           margin-bottom: 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
         }
 
-        .paywall-currency {
+        .paywall-price-original {
           font-size: 1rem;
-          vertical-align: super;
-          margin-right: 2px;
-          color: var(--gold);
+          text-decoration: line-through;
+          color: var(--text-dim);
         }
 
-        .paywall-amount {
+        .paywall-price-promo {
           font-size: 2.2rem;
+          font-weight: 700;
           color: var(--gold);
         }
 
