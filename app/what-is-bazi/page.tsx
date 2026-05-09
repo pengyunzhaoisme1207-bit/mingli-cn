@@ -22,13 +22,12 @@ export default function WhatIsBaziPage() {
       <Nav />
 
       {/* ─── HERO ─── */}
-      <section className="hero" style={{ paddingBottom: "3rem" }}>
+      <section style={{ paddingTop: "8rem", paddingBottom: "2rem", textAlign: "center" }}>
         <div className="container">
-          <p className="section-label">了解八字</p>
-          <h1 className="section-title" style={{ maxWidth: 480, margin: "0 auto" }}>
+          <h1 className="text-4xl md:text-5xl font-bold text-center text-[#fcd34d] mb-4">
             什么是八字？
           </h1>
-          <p className="section-desc" style={{ margin: "0 auto" }}>
+          <p className="text-lg text-gray-300 text-center tracking-wide mb-12">
             四柱命理——中国最精密的人类命运解析体系，历经千年锤炼。
           </p>
         </div>
@@ -38,10 +37,10 @@ export default function WhatIsBaziPage() {
       <section className="positioning">
         <div className="container">
           <div className="positioning-inner">
-            <blockquote className="positioning-quote">
-              &ldquo;八字之于中国玄学，犹如本命星盘之于西方占星——且更为深入。&rdquo;
+            <blockquote className="text-xl md:text-2xl font-serif text-[#fcd34d] text-center max-w-3xl mx-auto leading-relaxed mb-8 opacity-90">
+              八字之于中国玄学，犹如本命星盘之于西方占星——且更为深入。
             </blockquote>
-            <p className="positioning-text">
+            <p className="text-base md:text-lg text-gray-400 text-center max-w-2xl mx-auto leading-loose">
               <strong>八字</strong>（四柱），将你的出生时刻的宇宙条件精确映射为<strong>四根支柱</strong>——年、月、日、时——每根柱含一个<strong>天干</strong>和一个<strong>地支</strong>。这八个字即是你性格、人际关系、事业、健康以及重大人生事件时机的蓝图。
             </p>
           </div>
@@ -49,27 +48,23 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── BLOCK 2: Four Pillars Diagram ─── */}
-      <section className="four-pillars">
+      <section className="four-pillars" style={{ marginTop: "5rem" }}>
         <div className="container">
-          <div className="section-header">
-            <p className="section-label">命运蓝图</p>
-            <h2 className="section-title">四柱</h2>
-            <p className="section-desc">
-              每根柱捕捉你人生的一个维度。合而为一，即是一张完整的命运地图。
-            </p>
-          </div>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            命运蓝图
+          </p>
+          <h2 className="section-title text-center mb-10">四柱</h2>
           <div className="pillars-grid">
             {[
-              { chinese: "年柱", stems: "癸巳", title: "年柱 · 根基", desc: "祖上根基、幼年环境、你出生的时代背景。" },
-              { chinese: "月柱", stems: "甲子", title: "月柱 · 格局", desc: "父母宫位、事业环境、核心性格特质。" },
-              { chinese: "日柱", stems: "丁酉", title: "日柱 · 本命", desc: "你自己——日干即本命元神，核心本质。" },
-              { chinese: "时柱", stems: "戊寅", title: "时柱 · 归宿", desc: "子女归宿、晚年运势、内在隐秘世界。" },
+              { label: "年柱", stems: "癸巳", desc: "祖上根基、幼年环境、你出生的时代背景。" },
+              { label: "月柱", stems: "甲子", desc: "父母宫位、事业环境、核心性格特质。" },
+              { label: "日柱", stems: "丁酉", desc: "你自己——日干即本命元神，核心本质。" },
+              { label: "时柱", stems: "戊寅", desc: "子女归宿、晚年运势、内在隐秘世界。" },
             ].map((p, i) => (
               <div className="pillar-card" key={i}>
-                <p className="pillar-card-chinese">{p.chinese}</p>
-                <p className="pillar-card-stems">{p.stems}</p>
-                <h3 className="pillar-card-title">{p.title}</h3>
-                <p className="pillar-card-desc">{p.desc}</p>
+                <p className="text-xs text-gray-500 mb-2">{p.label}</p>
+                <p className="text-3xl font-bold text-[#fcd34d] mb-3">{p.stems}</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -77,15 +72,15 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── BLOCK 3: Five Elements ─── */}
-      <section className="five-elements">
+      <section className="five-elements" style={{ marginTop: "5rem" }}>
         <div className="container">
-          <div className="section-header">
-            <p className="section-label">五行之力</p>
-            <h2 className="section-title">五行</h2>
-            <p className="section-desc">
-              命盘中的一切关系都回归五种元素的力量——它们的平衡、流转与相互作用。
-            </p>
-          </div>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            五行之力
+          </p>
+          <h2 className="section-title text-center mb-10">五行</h2>
+          <p className="text-base md:text-lg text-gray-400 text-center max-w-2xl mx-auto leading-loose mb-10">
+            命盘中的一切关系都回归五种元素的力量——它们的平衡、流转与相互作用。
+          </p>
           <div className="elements-grid">
             {[
               { char: "木", name: "木", desc: "生长、扩张、远见、春季" },
@@ -105,12 +100,12 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── BLOCK 4: Comparison Table ─── */}
-      <section className="comparison">
+      <section className="comparison" style={{ marginTop: "5rem" }}>
         <div className="container">
-          <div className="section-header">
-            <p className="section-label">对比</p>
-            <h2 className="section-title">八字与西方占星的区别</h2>
-          </div>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            对比
+          </p>
+          <h2 className="section-title text-center mb-10">八字与西方占星的区别</h2>
           <div className="comparison-table-wrap">
             <table className="comparison-table">
               <thead>
@@ -153,15 +148,15 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── BLOCK 5: Four Schools ─── */}
-      <section className="four-schools">
+      <section className="four-schools" style={{ marginTop: "5rem" }}>
         <div className="container">
-          <div className="section-header">
-            <p className="section-label">方法论</p>
-            <h2 className="section-title">四家流派，一个共识</h2>
-            <p className="section-desc">
-              MÍNG LÌ 采用四大命理流派的投票方法。当四家结论一致时，解读达到最高可信度。
-            </p>
-          </div>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            方法论
+          </p>
+          <h2 className="section-title text-center mb-10">四家流派，一个共识</h2>
+          <p className="text-base md:text-lg text-gray-400 text-center max-w-2xl mx-auto leading-loose mb-10">
+            MÍNG LÌ 采用四大命理流派的投票方法。当四家结论一致时，解读达到最高可信度。
+          </p>
           <div className="schools-grid">
             {[
               { chinese: "徐乐吾", name: "徐乐吾", desc: "古典典籍权威注释者。其对《子平真诠》和《穷通宝鉴》的评析至今仍是权威标准。", method: "格局与月令分析法" },
@@ -181,12 +176,12 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── BLOCK 6: FAQ ─── */}
-      <section className="faq">
+      <section className="faq" style={{ marginTop: "5rem" }}>
         <div className="container">
-          <div className="section-header">
-            <p className="section-label">常见问题</p>
-            <h2 className="section-title">你可能想知道</h2>
-          </div>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            常见问题
+          </p>
+          <h2 className="section-title text-center mb-10">你可能想知道</h2>
           <div className="faq-list">
             <FaqItem
               question="我需要知道精确的出生时间吗？"
@@ -213,11 +208,13 @@ export default function WhatIsBaziPage() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="final-cta">
-        <div className="container">
-          <p className="section-label">开始你的解读</p>
-          <h2 className="section-title">准备好看看你的命盘了吗？</h2>
-          <Link href="/reading" className="btn btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.05rem", marginBottom: "1rem" }}>
+      <section className="final-cta" style={{ marginTop: "5rem" }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <p className="text-sm font-medium text-[#fcd34d] uppercase tracking-[0.2em] mb-3 text-center opacity-80">
+            开始你的解读
+          </p>
+          <h2 className="section-title mb-10">准备好看看你的命盘了吗？</h2>
+          <Link href="/reading" className="btn btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.05rem" }}>
             开始解读 &rarr;
           </Link>
         </div>
