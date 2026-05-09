@@ -210,14 +210,13 @@ export default function ReadingPage() {
         if (data.status === "paid") {
           console.log("[payment] 支付成功！清除缓存并跳转到报告页");
           clearInterval(poll);
+          const pendingRid = localStorage.getItem("pending_report_id");
           localStorage.removeItem("pending_order_no");
           localStorage.removeItem("pending_report_id");
           localStorage.removeItem("pending_report_url");
           setIsUnlocked(true);
-          // 跳转到报告页
-          const reportId = localStorage.getItem("pending_report_id") || reportId;
-          if (reportId) {
-            router.push(`/report/${reportId}`);
+          if (pendingRid) {
+            router.push(`/report/${pendingRid}`);
           }
         } else {
           console.log("[payment] 当前状态:", data.status, "继续轮询...");
