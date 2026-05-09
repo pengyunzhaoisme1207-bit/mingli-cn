@@ -27,6 +27,9 @@ const pillars = [
   { label: "时柱", stems: "辛 巳", hidden: "藏干：丙、戊、庚", tenGod: "比肩 · 七杀" },
 ];
 
+// 前 3 章免费（约 30%），其余付费
+const FREE_CHAPTERS = ["ch1", "ch2", "ch3"];
+
 export default function ReportPage() {
   const params = useParams();
   const id = params.id as string;
@@ -35,6 +38,8 @@ export default function ReportPage() {
   const [info, setInfo] = useState<{ name: string } | null>(null);
   const [notFound, setNotFound] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(`report_${id}`);
@@ -62,6 +67,14 @@ export default function ReportPage() {
     document.querySelectorAll(".chapter").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [chapters]);
+
+  async function handleUnlock() {
+    setIsProcessing(true);
+    // 模拟支付请求（2 秒）
+    await new Promise((r) => setTimeout(r, 2000));
+    setIsProcessing(false);
+    setIsUnlocked(true);
+  }
 
   function handleCopyLink() {
     navigator.clipboard.writeText(window.location.href);
@@ -133,17 +146,21 @@ export default function ReportPage() {
             {/* 侧边导航 */}
             <nav className="report-sidebar">
               <ol className="chapter-nav-list">
-                {Object.entries(chapterTitles).map(([key, title]) => (
-                  <li key={key}>
-                    <Link
-                      href={`#${key}`}
-                      className={`chapter-nav-link ${activeChapter === key ? "active" : ""}`}
-                    >
-                      <span className="chapter-nav-num">{key.replace("ch", "")}</span>
-                      {title}
-                    </Link>
-                  </li>
-                ))}
+                {Object.entries(chapterTitles).map(([key, title]) => {
+                  const isLocked = !isUnlocked && !FREE_CHAPTERS.includes(key);
+                  return (
+                    <li key={key}>
+                      <Link
+                        href={`#${key}`}
+                        className={`chapter-nav-link ${activeChapter === key ? "active" : ""} ${isLocked ? "locked" : ""}`}
+                      >
+                        <span className="chapter-nav-num">{key.replace("ch", "")}</span>
+                        {title}
+                        {isLocked && <span className="lock-icon">🔒</span>}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ol>
             </nav>
 
@@ -151,8 +168,9 @@ export default function ReportPage() {
             <div className="report-content">
               {Object.entries(chapterTitles).map(([key, title]) => {
                 const content = chapters[key] || "";
+                const isLocked = !isUnlocked && !FREE_CHAPTERS.includes(key);
                 return (
-                  <div key={key} id={key} className={`chapter ${false ? "chapter-locked" : ""}`}>
+                  <div key={key} id={key} className={`chapter ${isLocked ? "chapter-locked" : ""}`}>
                     <div className="chapter-content">
                       <p className="chapter-label">{title}</p>
                       <h2 className="chapter-title">{title}</h2>
@@ -166,11 +184,214 @@ export default function ReportPage() {
                   </div>
                 );
               })}
+
+              {/* 付费解锁卡片 */}
+              {!isUnlocked && (
+                <div className="paywall-anchor" id="paywall">
+                  <div className="paywall-card">
+                    <div className="paywall-icon">📜</div>
+                    <h3 className="paywall-title">深度解析报告已生成</h3>
+                    <p className="paywall-desc">
+                      包含学业潜力、性格短板及核心培养建议。<br />
+                      完整解读涵盖十章节命理分析与紫微斗数交叉验证。
+                    </p>
+                    <div className="paywall-divider" />
+                    <p className="paywall-price">
+                      <span className="paywall-currency">¥</span>
+                      <span className="paywall-amount">9.9</span>
+                    </p>
+                    <button
+                      className={`paywall-btn ${isProcessing ? "paywall-btn-loading" : ""}`}
+                      onClick={handleUnlock}
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? (
+                        <>
+                          <span className="paywall-spinner" />
+                          正在处理...
+                        </>
+                      ) : (
+                        "支付 ¥9.9 解锁全篇"
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
       <Footer />
+
+      <style>{`
+        /* 侧边栏锁定章节 */
+        .chapter-nav-link.locked {
+          opacity: 0.4;
+          pointer-events: none;
+        }
+        .lock-icon {
+          font-size: 0.7em;
+          margin-left: 4px;
+          opacity: 0.6;
+        }
+
+        /* 付费区章节毛玻璃 */
+        .chapter-locked .chapter-content {
+          position: relative;
+          filter: blur(8px);
+          user-select: none;
+          pointer-events: none;
+          transition: filter 0.8s ease;
+        }
+
+        /* 解锁动画 */
+        .chapter-content {
+          transition: filter 0.8s ease;
+        }
+
+        /* 付费卡片容器 */
+        .paywall-anchor {
+          position: relative;
+          margin: 2rem 0 3rem;
+          min-height: 320px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .paywall-card {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(20, 22, 32, 0.85);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(201, 169, 110, 0.2);
+          border-radius: 16px;
+          padding: 2.5rem 2rem;
+          text-align: center;
+          width: 90%;
+          max-width: 420px;
+          z-index: 10;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(201, 169, 110, 0.05);
+          animation: paywallFadeIn 0.6s ease;
+        }
+
+        @keyframes paywallFadeIn {
+          from { opacity: 0; transform: translate(-50%, -40%); }
+          to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .paywall-icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .paywall-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--gold);
+          margin-bottom: 0.75rem;
+          letter-spacing: 0.02em;
+        }
+
+        .paywall-desc {
+          font-size: 0.85rem;
+          color: var(--text-dim);
+          line-height: 1.7;
+          margin-bottom: 1.25rem;
+        }
+
+        .paywall-divider {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--border), transparent);
+          margin: 0 0 1.25rem;
+        }
+
+        .paywall-price {
+          color: var(--text);
+          font-weight: 700;
+          margin-bottom: 1.25rem;
+        }
+
+        .paywall-currency {
+          font-size: 1rem;
+          vertical-align: super;
+          margin-right: 2px;
+          color: var(--gold);
+        }
+
+        .paywall-amount {
+          font-size: 2.2rem;
+          color: var(--gold);
+        }
+
+        .paywall-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          padding: 0.85rem 2rem;
+          background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+          color: #07080D;
+          font-size: 1rem;
+          font-weight: 600;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          letter-spacing: 0.02em;
+        }
+
+        .paywall-btn:hover {
+          background: linear-gradient(135deg, var(--gold), var(--gold-light));
+          box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+          transform: translateY(-1px);
+        }
+
+        .paywall-btn:active {
+          transform: translateY(0);
+        }
+
+        .paywall-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        .paywall-spinner {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 2px solid rgba(7, 8, 13, 0.3);
+          border-top-color: var(--bg);
+          border-radius: 50%;
+          animation: paywall-spin 0.8s linear infinite;
+        }
+
+        @keyframes paywall-spin {
+          to { transform: rotate(360deg); }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+          .paywall-card {
+            padding: 2rem 1.5rem;
+            max-width: 360px;
+          }
+          .paywall-title {
+            font-size: 1.1rem;
+          }
+          .paywall-amount {
+            font-size: 1.8rem;
+          }
+          .paywall-anchor {
+            min-height: 280px;
+          }
+        }
+      `}</style>
     </>
   );
 }
