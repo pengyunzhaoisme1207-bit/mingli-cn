@@ -215,8 +215,8 @@ export default function ReportPage() {
                     </p>
                     <div className="paywall-divider" />
                     <p className="paywall-price">
-                      <span className="paywall-currency">¥</span>
-                      <span className="paywall-amount">9.9</span>
+                      <span className="paywall-price-original">¥9.9</span>
+                      <span className="paywall-price-promo">限时优惠 ¥4.9</span>
                     </p>
                     <button
                       className={`paywall-btn ${isProcessing ? "paywall-btn-loading" : ""}`}
@@ -229,7 +229,7 @@ export default function ReportPage() {
                           正在处理...
                         </>
                       ) : (
-                        "支付 ¥9.9 解锁全篇"
+                        "支付 ¥4.9 解锁全篇"
                       )}
                     </button>
                   </div>
@@ -329,17 +329,21 @@ export default function ReportPage() {
           color: var(--text);
           font-weight: 700;
           margin-bottom: 1.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
         }
 
-        .paywall-currency {
+        .paywall-price-original {
           font-size: 1rem;
-          vertical-align: super;
-          margin-right: 2px;
-          color: var(--gold);
+          text-decoration: line-through;
+          color: var(--text-dim);
         }
 
-        .paywall-amount {
+        .paywall-price-promo {
           font-size: 2.2rem;
+          font-weight: 700;
           color: var(--gold);
         }
 
