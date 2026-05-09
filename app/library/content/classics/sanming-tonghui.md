@@ -40,12 +40,6 @@ EAN 4057664123664
 
 [卷九](../Text/simplified_article_0009.xhtml)
 
-[卷十](../Text/simplified_article_0010.xhtml)
-
-[卷十一](../Text/simplified_article_0011.xhtml)
-
-[卷十二](../Text/simplified_article_0012.xhtml)
-
 ## [卷一](../Text/contents.xhtml#a1)
 
 ○论五行生成
@@ -4830,14 +4824,3 @@ EAN 4057664123664
 
 以上诸命，原本十之六，增十之四，间有一命而两载者，传闻之误，岂曰无之，要在知命者以意消息之可也。
 
-## [卷十](../Text/contents.xhtml#a10)
-
-暂缺。
-
-## [卷十一](../Text/contents.xhtml#a11)
-
-暂缺。
-
-## [卷十二](../Text/contents.xhtml#a12)
-
-暂缺。
