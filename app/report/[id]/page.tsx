@@ -170,17 +170,30 @@ export default function ReportPage() {
                 const content = chapters[key] || "";
                 const isLocked = !isUnlocked && !FREE_CHAPTERS.includes(key);
                 return (
-                  <div key={key} id={key} className={`chapter ${isLocked ? "chapter-locked" : ""}`}>
-                    <div className="chapter-content">
-                      <p className="chapter-label">{title}</p>
-                      <h2 className="chapter-title">{title}</h2>
-                      <div
-                        className="chapter-body"
-                        dangerouslySetInnerHTML={{
-                          __html: content ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>",
-                        }}
-                      />
-                    </div>
+                  <div key={key} id={key} className="chapter">
+                    {isLocked ? (
+                      <div className="paywall-content-blur">
+                        <p className="chapter-label">{title}</p>
+                        <h2 className="chapter-title">{title}</h2>
+                        <div
+                          className="chapter-body"
+                          dangerouslySetInnerHTML={{
+                            __html: content ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div className="chapter-content">
+                        <p className="chapter-label">{title}</p>
+                        <h2 className="chapter-title">{title}</h2>
+                        <div
+                          className="chapter-body"
+                          dangerouslySetInnerHTML={{
+                            __html: content ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>",
+                          }}
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -235,18 +248,19 @@ export default function ReportPage() {
           opacity: 0.6;
         }
 
-        /* 付费区章节毛玻璃 */
-        .chapter-locked .chapter-content {
+        /* 付费章节实时毛玻璃 */
+        .paywall-content-blur {
           position: relative;
           filter: blur(8px);
           user-select: none;
           pointer-events: none;
-          transition: filter 0.8s ease;
+          transition: filter 0.6s ease;
         }
 
-        /* 解锁动画 */
-        .chapter-content {
-          transition: filter 0.8s ease;
+        .paywall-content-blur.unlocked {
+          filter: none;
+          user-select: auto;
+          pointer-events: auto;
         }
 
         /* 付费卡片容器 */
@@ -260,14 +274,11 @@ export default function ReportPage() {
         }
 
         .paywall-card {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: rgba(20, 22, 32, 0.85);
+          position: relative;
+          background: rgba(20, 22, 32, 0.9);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(201, 169, 110, 0.2);
+          border: 1px solid rgba(201, 169, 110, 0.25);
           border-radius: 16px;
           padding: 2.5rem 2rem;
           text-align: center;
@@ -279,8 +290,8 @@ export default function ReportPage() {
         }
 
         @keyframes paywallFadeIn {
-          from { opacity: 0; transform: translate(-50%, -40%); }
-          to { opacity: 1; transform: translate(-50%, -50%); }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         .paywall-icon {

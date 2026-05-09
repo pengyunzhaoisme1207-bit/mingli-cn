@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { streamReport, type BirthInfo } from "@/lib/api";
 import { renderMarkdown } from "@/lib/renderMarkdown";
+
+// 前 3 章免费（约 30%），其余付费
+const FREE_CHAPTERS = new Set(["ch1", "ch2", "ch3"]);
 
 export default function ReadingPage() {
   const [phase, setPhase] = useState<"form" | "loading" | "report">("form");
@@ -20,8 +23,12 @@ export default function ReadingPage() {
   ]);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [hasPaidContent, setHasPaidContent] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
+  const paywallRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -40,6 +47,8 @@ export default function ReadingPage() {
     setPhase("loading");
     setError("");
     setChapters({});
+    setIsUnlocked(false);
+    setHasPaidContent(false);
 
     // 唯一 ID：时间戳 + 随机字符串
     const id = `${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
@@ -83,6 +92,11 @@ export default function ReadingPage() {
               latestChapters = parsed;
               setChapters(parsed);
               setPhase("report");
+
+              // 检测是否有付费章节开始生成
+              if (!hasPaidContent && Object.keys(parsed).some((k) => !FREE_CHAPTERS.has(k))) {
+                setHasPaidContent(true);
+              }
             }
           } catch {
             // 忽略格式错误
@@ -93,6 +107,13 @@ export default function ReadingPage() {
       setError(err.message || "报告生成失败");
       setPhase("form");
     }
+  }
+
+  async function handleUnlock() {
+    setIsProcessing(true);
+    await new Promise((r) => setTimeout(r, 2000));
+    setIsProcessing(false);
+    setIsUnlocked(true);
   }
 
   const chapterTitles: Record<string, string> = {
@@ -117,6 +138,15 @@ export default function ReadingPage() {
   function handleDownloadPDF() {
     window.print();
   }
+
+  // 滚动到付费卡片位置
+  useEffect(() => {
+    if (hasPaidContent && !isUnlocked && paywallRef.current) {
+      setTimeout(() => {
+        paywallRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  }, [hasPaidContent, isUnlocked]);
 
   return (
     <>
@@ -263,9 +293,29 @@ export default function ReadingPage() {
             <div className="report-chapters">
               {Object.entries(chapterTitles).map(([key, title]) => {
                 const content = chapters[key] || "";
+                const isPaid = !FREE_CHAPTERS.has(key);
+                const isLocked = isPaid && !isUnlocked;
                 const hasContent = content.length > 0;
+                const isGenerating = phase === "report" && isPaid && content.length > 0;
+
+                // 付费章节：流式生成中或已生成即实时毛玻璃
+                if (isLocked) {
+                  return (
+                    <div key={key} className="chapter" id={key}>
+                      <div className="paywall-content-blur">
+                        <p className="chapter-label">{title}</p>
+                        <h2 className="chapter-title">{title}</h2>
+                        <div
+                          className="chapter-body"
+                          dangerouslySetInnerHTML={{ __html: hasContent ? renderMarkdown(content) : "<p><em>生成中&hellip;</em></p>" }}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
-                  <div key={key} className={`chapter ${false ? "chapter-locked" : ""}`} style={!hasContent ? { opacity: 0.3 } : {}}>
+                  <div key={key} className={`chapter ${!hasContent && !isGenerating ? "chapter-locked" : ""}`} style={!hasContent && !isGenerating ? { opacity: 0.3 } : {}}>
                     <div className="chapter-content">
                       <p className="chapter-label">{title}</p>
                       <h2 className="chapter-title">{title}</h2>
@@ -277,12 +327,206 @@ export default function ReadingPage() {
                   </div>
                 );
               })}
+
+              {/* 付费解锁卡片 - 检测到付费章节内容后立即浮现 */}
+              {hasPaidContent && !isUnlocked && (
+                <div ref={paywallRef} className="paywall-anchor" id="paywall">
+                  <div className="paywall-card">
+                    <div className="paywall-icon">📜</div>
+                    <h3 className="paywall-title">深度解析报告已生成</h3>
+                    <p className="paywall-desc">
+                      包含学业潜力、性格短板及核心培养建议。<br />
+                      完整解读涵盖十章节命理分析与紫微斗数交叉验证。
+                    </p>
+                    <div className="paywall-divider" />
+                    <p className="paywall-price">
+                      <span className="paywall-currency">¥</span>
+                      <span className="paywall-amount">9.9</span>
+                    </p>
+                    <button
+                      className={`paywall-btn ${isProcessing ? "paywall-btn-loading" : ""}`}
+                      onClick={handleUnlock}
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? (
+                        <>
+                          <span className="paywall-spinner" />
+                          正在处理...
+                        </>
+                      ) : (
+                        "支付 ¥9.9 解锁全篇"
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
       )}
 
       <Footer />
+
+      <style>{`
+        /* 付费章节实时毛玻璃 */
+        .paywall-content-blur {
+          position: relative;
+          filter: blur(8px);
+          user-select: none;
+          pointer-events: none;
+          transition: filter 0.6s ease;
+        }
+
+        /* 解锁动画 */
+        .paywall-content-blur.unlocked {
+          filter: none;
+          user-select: auto;
+          pointer-events: auto;
+        }
+
+        /* 付费卡片容器 */
+        .paywall-anchor {
+          position: relative;
+          margin: 2rem 0 3rem;
+          min-height: 320px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .paywall-card {
+          position: relative;
+          background: rgba(20, 22, 32, 0.9);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(201, 169, 110, 0.25);
+          border-radius: 16px;
+          padding: 2.5rem 2rem;
+          text-align: center;
+          width: 90%;
+          max-width: 420px;
+          z-index: 10;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(201, 169, 110, 0.05);
+          animation: paywallFadeIn 0.6s ease;
+        }
+
+        @keyframes paywallFadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .paywall-icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .paywall-title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--gold);
+          margin-bottom: 0.75rem;
+          letter-spacing: 0.02em;
+        }
+
+        .paywall-desc {
+          font-size: 0.85rem;
+          color: var(--text-dim);
+          line-height: 1.7;
+          margin-bottom: 1.25rem;
+        }
+
+        .paywall-divider {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--border), transparent);
+          margin: 0 0 1.25rem;
+        }
+
+        .paywall-price {
+          color: var(--text);
+          font-weight: 700;
+          margin-bottom: 1.25rem;
+        }
+
+        .paywall-currency {
+          font-size: 1rem;
+          vertical-align: super;
+          margin-right: 2px;
+          color: var(--gold);
+        }
+
+        .paywall-amount {
+          font-size: 2.2rem;
+          color: var(--gold);
+        }
+
+        .paywall-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          padding: 0.85rem 2rem;
+          background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+          color: #07080D;
+          font-size: 1rem;
+          font-weight: 600;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          letter-spacing: 0.02em;
+        }
+
+        .paywall-btn:hover:not(:disabled) {
+          background: linear-gradient(135deg, var(--gold), var(--gold-light));
+          box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+          transform: translateY(-1px);
+        }
+
+        .paywall-btn:active {
+          transform: translateY(0);
+        }
+
+        .paywall-btn:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        .paywall-spinner {
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 2px solid rgba(7, 8, 13, 0.3);
+          border-top-color: var(--bg);
+          border-radius: 50%;
+          animation: paywall-spin 0.8s linear infinite;
+        }
+
+        @keyframes paywall-spin {
+          to { transform: rotate(360deg); }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+          .paywall-card {
+            padding: 2rem 1.5rem;
+            max-width: 360px;
+          }
+          .paywall-title {
+            font-size: 1.1rem;
+          }
+          .paywall-amount {
+            font-size: 1.8rem;
+          }
+          .paywall-anchor {
+            min-height: 280px;
+          }
+          .paywall-content-blur {
+            filter: blur(6px);
+          }
+        }
+      `}</style>
     </>
   );
 }
