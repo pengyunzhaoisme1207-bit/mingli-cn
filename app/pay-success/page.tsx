@@ -17,8 +17,7 @@ export default function PaySuccessPage() {
     const pendingReportUrl = localStorage.getItem('pending_report_url')
 
     if (!pendingOrderNo || !pendingReportUrl) {
-      setStatus('failed')
-      clearInterval(dotsInterval)
+      router.replace('/')
       return
     }
 
