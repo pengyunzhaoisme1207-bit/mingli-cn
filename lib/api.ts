@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://web-production-3c93b.up.railway.app";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://web-production-6e525.up.railway.app";
 
 export interface BirthInfo {
   name: string;
