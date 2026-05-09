@@ -21,6 +21,14 @@ Next.js 15 App Router 命理报告生成网站。
 | `/sample-report` | `app/sample-report/page.tsx` | Client | 示例报告 |
 | `/library` | `app/library/[[...slug]]/page.tsx` | Static/Server | 典籍文库 |
 
+## 支付集成
+
+- **客户端**：`lib/payment.ts` 封装 `createPayOrder()` 和 `checkPayStatus()`，调用 `NEXT_PUBLIC_PAYMENT_CENTER_URL`
+- **付费墙**：前3章（ch1-ch3）免费，ch4-ch15 付费，localStorage 存储报告数据
+- **解锁流程**：`handleUnlock` → `createPayOrder()` → 校验 `pay_url` → `localStorage.setItem("pending_order_no", ...)` → `window.location.href = pay_url`
+- **轮询机制**：页面加载时从 `localStorage.getItem("pending_order_no")` 读取，每 2s 轮询支付状态，5min 超时自动停止
+- **⚠️ `/reading` 和 `/report/[id]` 两个页面都有支付逻辑，必须同步修改**
+
 ## 关键约定
 
 - **API 调用**：通过 `lib/api.ts`，`NEXT_PUBLIC_API_URL` 环境变量指定后端，fallback 到 Railway

@@ -79,22 +79,30 @@ export default function ReportPage() {
     const pendingOrderNo = localStorage.getItem("pending_order_no");
     if (!pendingOrderNo) return;
 
+    console.log("[payment] 检测到待支付订单，开始轮询:", pendingOrderNo);
+
     const interval = setInterval(async () => {
       try {
-        const status = await checkPayStatus(pendingOrderNo);
-        if (status.status === "paid") {
+        const data = await checkPayStatus(pendingOrderNo);
+        console.log("[payment] 轮询结果:", JSON.stringify(data));
+        if (data.status === "paid") {
+          console.log("[payment] 支付成功！解锁内容");
           clearInterval(interval);
           localStorage.removeItem("pending_order_no");
           localStorage.removeItem("pending_report_id");
+          localStorage.removeItem("pending_report_url");
           setIsUnlocked(true);
         }
-      } catch {
-        // 网络错误，继续轮询
+      } catch (e: any) {
+        console.error("[payment] 轮询失败:", e.message);
       }
     }, 2000);
 
-    // 5 分钟超时停止轮询
-    const timeout = setTimeout(() => clearInterval(interval), 300000);
+    // 10 分钟超时停止轮询
+    const timeout = setTimeout(() => {
+      console.log("[payment] 10 分钟超时，停止轮询");
+      clearInterval(interval);
+    }, 600000);
 
     return () => {
       clearInterval(interval);
