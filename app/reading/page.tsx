@@ -6,6 +6,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { streamReport, type BirthInfo } from "@/lib/api";
+import { createPayOrder, checkPayStatus } from "@/lib/payment";
 import { renderMarkdown } from "@/lib/renderMarkdown";
 import { allRegions, getCities, getDistricts } from "@/lib/regions";
 
@@ -27,6 +28,7 @@ export default function ReadingPage() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasPaidContent, setHasPaidContent] = useState(false);
+  const [pendingOrderNo, setPendingOrderNo] = useState("");
 
   // 地区联动状态
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -127,9 +129,23 @@ export default function ReadingPage() {
 
   async function handleUnlock() {
     setIsProcessing(true);
-    await new Promise((r) => setTimeout(r, 2000));
-    setIsProcessing(false);
-    setIsUnlocked(true);
+    try {
+      const result = await createPayOrder({
+        product_name: "MÍNG LÌ 命理深度报告",
+        amount: 4.9,
+        project_id: "mingli-cn",
+      });
+      setPendingOrderNo(result.order_no);
+      // 保存 report_id 以便支付后恢复
+      localStorage.setItem(`pending_order_${result.order_no}`, reportId);
+      // 跳转虎皮椒支付页面
+      window.location.href = result.pay_url;
+    } catch {
+      setError("创建支付订单失败，请稍后重试");
+      setPhase("form");
+    } finally {
+      setIsProcessing(false);
+    }
   }
 
   const chapterTitles: Record<string, string> = {
@@ -168,6 +184,30 @@ export default function ReadingPage() {
       }, 300);
     }
   }, [hasPaidContent, isUnlocked]);
+
+  // 支付返回后轮询订单状态
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const orderNo = params.get("order_no");
+    if (!orderNo) return;
+
+    setPendingOrderNo(orderNo);
+    const interval = setInterval(async () => {
+      try {
+        const status = await checkPayStatus(orderNo);
+        if (status.status === "paid") {
+          setIsUnlocked(true);
+          clearInterval(interval);
+          // 清除 URL 参数
+          window.history.replaceState({}, "", window.location.pathname);
+        }
+      } catch {
+        // 网络错误，继续轮询
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
