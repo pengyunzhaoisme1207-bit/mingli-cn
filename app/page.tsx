@@ -158,10 +158,9 @@ export default function HomePage() {
             开始我的解读
           </Link>
           <p className="hp-final-note hp-final-price">
-            <span className="hp-price-original">¥9.9</span>
-            <span className="hp-price-promo">限时优惠 ¥4.9</span>
+            <span className="hp-price-promo">免费内测中</span>
           </p>
-          <p className="hp-final-note">一次性付费 · 即时生成</p>
+          <p className="hp-final-note">完整报告 · 即时生成</p>
         </div>
       </section>
 

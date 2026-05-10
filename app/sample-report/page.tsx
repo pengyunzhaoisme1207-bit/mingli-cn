@@ -351,9 +351,8 @@ export default function SampleReportPage() {
             开始我的解读 &rarr;
           </Link>
           <p className="final-price">
-            <span className="price-original">¥9.9</span>
-            <span className="price-promo">限时优惠 ¥4.9</span>
-            &middot; 一次性付费 &middot; 即时生成
+            <span className="price-promo">免费内测中</span>
+            &middot; 完整报告 &middot; 即时生成
           </p>
         </div>
       </section>
